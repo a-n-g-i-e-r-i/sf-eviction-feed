@@ -24,6 +24,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // html endpoints
 // *************
 
+app.get('/', function homepage (req, res) {
+  res.sendFile(__dirname + '/views/index.html');
+});
+
 // *************
 // json endpoints
 // *************
