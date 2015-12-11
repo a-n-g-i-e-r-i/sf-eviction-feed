@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
 
-  //dynamic viewport
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>SF Eviction Feed</title>
@@ -21,13 +20,32 @@
 </head>
 
 <body>
+
+  <!-- begin navigation -->
   <div class="jumbotron">
     <div class="container">
-      <h1>Notice Evictions</h1>
-      <p>Live feed for evictions in San Francisco</p>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 text-center">
+          <h1>Notice</h1>
+          <p>Evictions in San Francisco</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-4 text-center">
+          <h2>Tenant's Rights</h2>
+        </div>
+        <div class="col-xs-4 text-center">
+          <h2>Evictions Feed</h2>
+        </div>
+        <div class="col-xs-4 text-center">
+          <h2>Map of SF Evictions</h2>
+        </div>
+      </div>
     </div>
   </div>
+  <!--   end navigation -->
 
+  <!-- begin eviction feed -->
   <section class="container">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
@@ -39,6 +57,7 @@
     <div id='evictions'>
     </div>
   </section>
+  <!-- end eviction feed -->
 
 
   
