@@ -12,8 +12,19 @@ var evictionList = [];
 evictionList.push({
   address: '100 Broadway Ave',
 });
+evictionList.push({
+  address: '101 Broadway Ave',
+});
+evictionList.push({
+  address: '102 Broadway Ave',
+});
+evictionList.push({
+  address: '103 Broadway Ave',
+});
 
-renderEviction(evictionList[0]);
+evictionList.forEach( function (element, index) {
+  renderEviction(element);
+});
 
 // *************
 // get eviction by id
