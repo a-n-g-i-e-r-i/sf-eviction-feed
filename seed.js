@@ -6,6 +6,7 @@ var db = require("./models");
 var evictionList = [];
 evictionList.push({
   address: '100 Broadway Ave',
+  notice: ''
 });
 
 var sampleNotice = [];
@@ -13,7 +14,8 @@ sampleNotice.push({
   title: 'Ellis Act kick out',
   user: 'riotgrrrl212',
   comment: 'Another one bites the dust',
-  date: '10/10/2015'
+  date: '10/10/2015',
+  resource: '',
 });
 
 
@@ -29,9 +31,11 @@ sampleResource.push({
 //populate eviction list with notices
 evictionList.forEach(function(eviction){
   eviction.notice = sampleNotice;
+  console.log(eviction);
 });
 
 //populate notice list with resources
-noticeList.forEach(function(notice){
+sampleNotice.forEach(function(notice){
   notice.resource = sampleResource;
+  console.log(notice);
 });
