@@ -9,7 +9,7 @@ var NoticeSchema = new Schema({
   user: String,
   comment: String,
   date: String,
-  resource: [ResourceSchema]
+  // resource: [ResourceSchema]
 });
 
 var Notice = mongoose.model('Notice', NoticeSchema);
