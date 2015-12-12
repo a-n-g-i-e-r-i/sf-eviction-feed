@@ -1,9 +1,38 @@
 .jumbotron {
   background-color: orange;
-  background-size: cover;
   background-repeat: no-repeat;
   color: black;
+  background-size: cover;
+  max-height: 500px;
+  min-height: 435px;
 }
-.jumbotron .container {
-  height: 100%;
+
+.row {
+  background-size: cover;
+}
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+ 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    background: #0099cc;
+    color: #ffffff;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
 }
