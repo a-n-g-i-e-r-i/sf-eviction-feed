@@ -22,23 +22,26 @@
 <body>
 
   <!-- begin navigation -->
-  <div class="jumbotron">
+  <div class="main-content jumbotron">
     <div class="container">
       <div class="row">
-        <div class="col-md-10 col-md-offset-1 text-center">
+        <div class="col-md-9 text-center">
           <h1>Notice</h1>
           <p>Evictions in San Francisco</p>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4 text-center">
-          <h2>Tenant's Rights</h2>
-        </div>
-        <div class="col-xs-4 text-center">
-          <h2>Evictions Feed</h2>
-        </div>
-        <div class="col-xs-4 text-center">
-          <h2>Map of SF Evictions</h2>
+        <div class="col-md-3 text-center">
+          <div class="side-row">
+            <h2>Tenant's Rights</h2>
+            <button class='btn btn-warning nav-tenants-rights'>Learn More</button>
+          </div>
+          <div class="side-row">
+            <h2>Evictions</h2>
+            <button class='btn btn-warning nav-eviction-feed'>Browse Feed</button>
+          </div>
+          <div class="side-row">
+            <h2>Map of SF Evictions</h2>
+            <button class='btn btn-warning nav-view-map'>View Map</button>
+          </div>
         </div>
       </div>
     </div>
@@ -46,7 +49,7 @@
   <!--   end navigation -->
 
   <!-- begin tenant -->
-  <div class="jumbotron"> 
+  <div class="tenants-rights jumbotron"> 
     <section class="container">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -62,7 +65,7 @@
   <!-- end tenant -->
 
   <!-- begin eviction feed -->
-  <div class="jumbotron">
+  <div class="eviction-feed jumbotron">
     <section class="container">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -78,7 +81,7 @@
   <!-- end eviction feed -->
 
   <!-- begin map -->
-  <div class="jumbotron">
+  <div class="view-map jumbotron">
     <section class="container">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
