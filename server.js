@@ -62,6 +62,11 @@ app.get('/api/evictions', function evictionIndex (req, res) {
   res.send(evictionList);
 });
 
+//endpoint for data.gov eviction endpoint
+app.get('https://data.sfgov.org/resource/ugv9-ywu3.json', function evictionIndex (req, res) {
+  res.send(data);
+});
+
 // #########################
 // server
 // #########################
