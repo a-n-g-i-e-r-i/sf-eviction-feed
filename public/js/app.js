@@ -15,6 +15,10 @@ $.get('/api/evictions').success(function (eviction) {
   });
 });
 
+$.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (eviction) {
+    renderEviction(eviction[0]);
+});
+
 // *************
 // get eviction by id
 // *************
