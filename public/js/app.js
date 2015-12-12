@@ -8,22 +8,11 @@ $(document).ready(function() {
 // *************
 // read all evictions
 // *************
-var evictionList = [];
-evictionList.push({
-  address: '100 Broadway Ave',
-});
-evictionList.push({
-  address: '101 Broadway Ave',
-});
-evictionList.push({
-  address: '102 Broadway Ave',
-});
-evictionList.push({
-  address: '103 Broadway Ave',
-});
 
-evictionList.forEach( function (element, index) {
-  renderEviction(element);
+$.get('/api/evictions').success(function (eviction) {
+  eviction.forEach(function (eviction) {
+    renderEviction(eviction);
+  });
 });
 
 // *************
