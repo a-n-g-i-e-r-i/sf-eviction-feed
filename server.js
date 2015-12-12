@@ -32,6 +32,36 @@ app.get('/', function homepage (req, res) {
 // json endpoints
 // *************
 
+app.get('/api', function apiIndex (req, res) {
+  res.json({
+    message: "Notice Eviction API index",
+    documentation_url: "https://github.com/isangieri/project-01/api.md",
+    base_url: "http://localhost:3000/",
+    endpoints: [
+      {method: 'GET', path: '/api', description: 'Available endpoints'}
+    ]
+  });
+});
+
+//temporary hardcoded data
+var evictionList = [];
+evictionList.push({
+  address: '100 Broadway Ave',
+});
+evictionList.push({
+  address: '101 Broadway Ave',
+});
+evictionList.push({
+  address: '102 Broadway Ave',
+});
+evictionList.push({
+  address: '103 Bpaweifjaoifwjroadway Ave',
+});
+
+app.get('/api/evictions', function evictionIndex (req, res) {
+  res.send(evictionList);
+});
+
 // #########################
 // server
 // #########################
