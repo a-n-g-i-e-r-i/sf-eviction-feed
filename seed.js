@@ -18,7 +18,6 @@ sampleNotice.push({
   resource: '',
 });
 
-
 var sampleResource = [];
 sampleResource.push({
   title: 'My First Eviction Notice',
@@ -28,14 +27,12 @@ sampleResource.push({
   type: 'image',
 });
 
-//populate eviction list with notices
+//populate each eviction with notices
 evictionList.forEach(function(eviction){
   eviction.notice = sampleNotice;
-  console.log(eviction);
 });
 
-//populate notice list with resources
+//populate each notice with resources
 sampleNotice.forEach(function(notice){
   notice.resource = sampleResource;
-  console.log(notice);
 });
