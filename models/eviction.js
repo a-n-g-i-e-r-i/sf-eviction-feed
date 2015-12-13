@@ -1,13 +1,17 @@
 var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+  Schema = mongoose.Schema;
 
-var notice = require('./notice');
+//requires Notice from notice.js
+var Notice = require('./notice.js');
 
-var EvictionSchema = new Schema ({
+//defines evictionSchema
+var evictionSchema = new Schema ({
   address: String,
-  // notice: [NoticeSchema]
+  notice: [Notice.schema],
 });
 
-var Eviction = mongoose.model('Eviction', EvictionSchema);
+//defines Eviction by evictionSchema
+var Eviction = mongoose.model('Eviction', evictionSchema);
 
+//exports Eviction through module
 module.exports = Eviction;

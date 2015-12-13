@@ -12,6 +12,9 @@ var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//require models
+var db = require('./models');
+
 // #########################
 // database
 // #########################
@@ -59,7 +62,9 @@ evictionList.push({
 });
 
 app.get('/api/evictions', function evictionIndex (req, res) {
-  res.send(evictionList);
+  db.Eviction.find({}, function(err, evictions) {
+    res.json(evictions);
+  });
 });
 
 //endpoint for data.gov eviction endpoint

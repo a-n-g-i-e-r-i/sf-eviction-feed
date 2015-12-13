@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var ResourceSchema = new Schema({
+var resourceSchema = new Schema({
   title: String,
   link: String,
   caption: String,
@@ -9,6 +9,6 @@ var ResourceSchema = new Schema({
   type: String,
 });
 
-var Resource = mongoose.model('Resource', ResourceSchema);
+var Resource = mongoose.model("Resource", resourceSchema);
 
 module.exports = Resource;

@@ -1,17 +1,20 @@
 var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+  Schema = mongoose.Schema;
 
-var resource = require('./resource');
+//requires Resource from resource.js
+var Resource = require('./resource.js');
 
-//docusign?
-var NoticeSchema = new Schema({
+//defines noticeSchema
+var noticeSchema = new Schema({
   title: String,
   user: String,
   comment: String,
   date: String,
-  // resource: [ResourceSchema]
+  resource: [Resource.schema],
 });
 
-var Notice = mongoose.model('Notice', NoticeSchema);
+//defines Notice by noticeSchema
+var Notice = mongoose.model('Notice', noticeSchema);
 
+//exports Notice through module
 module.exports = Notice;
