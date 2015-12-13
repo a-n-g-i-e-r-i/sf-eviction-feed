@@ -10,13 +10,18 @@ $(document).ready(function() {
 // *************
 
 $.get('/api/evictions').success(function (eviction) {
+  console.log(eviction);
   eviction.forEach(function (eviction) {
     renderEviction(eviction);
   });
 });
 
 $.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (eviction) {
-    renderEviction(eviction[0]);
+  renderEviction(eviction[0]);
+  console.log(eviction[0].estoppel_id);
+  // eviction.forEach( function (element, index) {
+  //  renderEviction(element);
+  // });
 });
 
 // *************
@@ -28,7 +33,13 @@ $.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (evicti
 // *************
 
 
-// modal fields update form to server 
+//modal fields update form to server
+$('#evictions').on('click', '.add-notice', function(e) {
+  var id= $(this).parents('.eviction').data('eviction-id');
+  console.log('id',id);
+  // $('#notice-modal').data('eviction-id', id);
+  // $('#notice-modal').modal();
+});
 
 
 //render eviction
@@ -37,7 +48,7 @@ function renderEviction(eviction) {
 
   var evictionHtml = 
   "        <!-- one eviction -->" +
-  "        <div class='row album' data-eviction-id='" + 'EVICTION ID' + "'>" +
+  "        <div class='row eviction' data-eviction-id='" + eviction.estoppel_id + "'>" +
   "          <div class='col-md-10 col-md-offset-1'>" +
   "            <div class='panel panel-default'>" +
   "              <div class='panel-body'>" +
