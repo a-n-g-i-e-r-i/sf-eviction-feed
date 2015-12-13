@@ -37,8 +37,8 @@ $.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (evicti
 $('#evictions').on('click', '.add-notice', function(e) {
   var id= $(this).parents('.eviction').data('eviction-id');
   console.log('id',id);
-  // $('#notice-modal').data('eviction-id', id);
-  // $('#notice-modal').modal();
+  $('#notice-modal').data('eviction-id', id);
+  $('#notice-modal').modal();
 });
 
 
