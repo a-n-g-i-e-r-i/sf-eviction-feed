@@ -94,6 +94,8 @@ $('#save-notice').on('click', handleNewNoticeSubmit);
 function handleNewNoticeSubmit(e) {
   e.preventDefault();
 
+  // var formData = $('form').serialize();
+
   var evictionId = $('#add-notice-modal').data('eviction-id');
   var title = $('#notice-title').val();
   var username = $('#username').val();
@@ -102,27 +104,25 @@ function handleNewNoticeSubmit(e) {
   var image = $('#image').val();
   var pdf = $('#pdf').val();
 
-  console.log(evictionId);
-  console.log(title);
-  console.log(username);
-  console.log(comment);
-  console.log(date);
-  console.log(image);
-  console.log(pdf);
+  var formData = {
+    eviction_id: evictionId,
+    title: title,
+    user: username,
+    comment: comment,
+    date: date,
+    resource: [
+      {image: image},
+      {pdf: pdf}
+    ]
+  };
 
-//   var formData = {
-//     title: title,
-//     user: username,
-//     comment: comment,
-//     date: date,
-//     resource: [
-//       {image: image},
-//       {pdf: pdf}
-//     ]
-//   };
+  $.post('/api/notices', formData)
+    .success(function(notice) {
+    console.log('notice after POST', notice);
+    //render the server's response
+  });
 
-//   // var postUrl = '/api/notices';
-//   // console.log('posting to ', postUrl, ' with data ', formData);
+  $(this).trigger("reset");
 
 //   // $.post(postUrl, formData)
 //   //   .success(function(notice) {
