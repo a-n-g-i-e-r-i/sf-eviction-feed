@@ -17,6 +17,7 @@
 
   <!-- application scripts -->
   <script src="js/app.js"></script>
+
 </head>
 
 <body>
@@ -52,7 +53,7 @@
   <div class="tenants-rights jumbotron"> 
     <section class="container">
       <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-10 col-md-offset-1 text-center">
           <h1>Tenant's Rights</h1>
         </div>
       </div>
@@ -68,13 +69,48 @@
   <div class="eviction-feed jumbotron">
     <section class="container">
       <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-10 col-md-offset-1 text-center">
           <h1>Eviction Feed</h1>
         </div>
       </div>
 
       <!-- evictions -->
-      <div id='evictions'>
+      <div class='row'>
+        <div id='evictions'
+
+          <!-- eviction handlebars template -->
+          <script id="evictions-template" type="text/x-handlebars-template">
+            {{#each eviction}}
+              <div class='col-md-4 eviction' data-eviction-id="{{estoppel_id}}" style="background-image:url('https://a2.muscache.com/im/pictures/76288486/cfb45c65_original.jpg?aki_policy=x_medium')">{{eviction.estoppel_id}}
+                <div class="link discovery-card darken-on-hover discovery-listing">
+                  <div class="panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label">
+                    <div class="va-middle text-center text-contrast">
+                      <div class="h2">
+                        <strong>{{address}}</strong>{{eviction.address}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class='col-md-12 notice' data-eviction-id="{{estoppel_id}}">{{eviction.estoppel_id}}
+                <div>
+                  <span>Address: {{address}}</span>
+                  <br>
+                  <span>Supervisor District: {{supervisor_district}}</span>{{eviction.supervisor_district}}
+                  <br>
+                  <span>Filed On: {{file_date}}</span>{{eviction.file_date}}
+                  <br>
+                  <span>Neighborhood: {{neighborhood}}</span>{{eviction.neighborhood}}
+                  <br>
+                  
+                </div>
+                <button class='btn btn-warning add-notice'>Add Notice</button>
+              </div>
+
+            {{/each}}
+          </script>
+        </div>
       </div>
     </section>
   </div>
@@ -96,7 +132,84 @@
   </div>
   <!-- end map -->
 
+  <!-- begin add-notice-modal: this is not visible until you call .modal() on it -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="add-notice-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Add Notice</h4>
+        </div>
+        <div class="modal-body">
+          <fieldset class='form-horizontal'>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="notice-title">Notice Title</label>
+            <div class="col-md-4">
+            <input id="notice-title" name="notice-title" type="text" placeholder="" class="form-control input-md" required="">
+
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="username">Username</label>
+            <div class="col-md-4">
+            <input id="username" name="username" type="text" placeholder="" class="form-control input-md">
+
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="comment">Comment</label>
+            <div class="col-md-4">
+            <textarea id="comment" name="comment" type="text" placeholder="" class="form-control input-md" cols="50" rows="10"></textarea>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="date">Date</label>
+            <div class="col-md-4">
+            <input id="date" name="date" type="text" placeholder="" class="form-control input-md">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="image">Image</label>
+            <div class="col-md-4">
+            <input id="image" name="image" type="text" placeholder="" class="form-control input-md">
+            </div>
+          </div>
+
+                      <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="pdf">PDF</label>
+            <div class="col-md-4">
+            <input id="pdf" name="pdf" type="text" placeholder="" class="form-control input-md">
+            </div>
+          </div>
+
+          </fieldset>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" id="save-notice">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
 
   
 </body>
+
+  <!-- handlebars -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+
 </html>
+
