@@ -3,9 +3,11 @@ var mongoose = require("mongoose");
 
 //requires Resource from resource.js
 var Resource = require('./resource.js');
+var Eviction = require('./eviction.js');
 
 //defines noticeSchema
 var noticeSchema = new Schema({
+  eviction_id: String,
   title: String,
   user: String,
   comment: String,
