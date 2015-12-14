@@ -57,7 +57,7 @@ app.post('/api/evictions', function addEviction (req, res) {
   var body = req.body;
 
   db.Eviction.remove(req.body, function(err, isThere) {
-    console.log(isThere);
+    // console.log(isThere);
   });
 
   db.Eviction.create(req.body, function(err, eviction) {
