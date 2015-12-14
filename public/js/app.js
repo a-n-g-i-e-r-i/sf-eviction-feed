@@ -9,12 +9,14 @@ $(document).ready(function() {
 // read all evictions
 // *************
 
-// $.get('/api/evictions').success(function (eviction) {
-//   console.log(eviction);
-//   eviction.forEach(function (eviction) {
-//     renderEviction(eviction);
-//   });
-// });
+$.get('/api/evictions').success(function (eviction) {
+  eviction.forEach(function (eviction) {
+    // renderEviction(eviction);
+
+    console.log(eviction);
+  });
+  
+});
 
 // *************
 // get eviction by id
@@ -121,6 +123,22 @@ function evictionHandlebarsTemplate() {
 
     // append html to the view
     $('#evictions').append(evictionHtml);
+
+    evictionResult.forEach( function(eviction) {
+      var evictionNew = {
+        eviction_id: eviction.estoppel_id,
+        address: eviction.address,
+        supervisor_district: eviction.supervisor_district,
+        filed_on: eviction.file_date,
+        neighborhood: eviction.neighborhood,
+        // notice: ''
+      };
+
+      $.post('/api/evictions', evictionNew)
+        .success(function(evictionNew) {
+      });
+
+    });
   });
 }
 
