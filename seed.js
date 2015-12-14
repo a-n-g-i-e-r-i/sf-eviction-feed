@@ -5,12 +5,17 @@ var db = require("./models");
 
 var evictionList = [];
 evictionList.push({
+  eviction_id: 'D000000',
   address: '100 Broadway Ave',
-  notice: ''
+  supervisor_district: '1',
+  filed_on: '2015-10-29T00:00:00',
+  neighborhood: 'Mission',
+  // notice: ''
 });
 
-var sampleNotice = [];
-sampleNotice.push({
+var noticeList = [];
+noticeList.push({
+  eviction_id: 'D000000',
   title: 'Ellis Act kick out',
   user: 'riotgrrrl212',
   comment: 'Another one bites the dust',
@@ -29,10 +34,36 @@ sampleResource.push({
 
 //populate each eviction with notices
 evictionList.forEach(function(eviction){
-  eviction.notice = sampleNotice;
+  eviction.notice = noticeList;
 });
 
 //populate each notice with resources
-sampleNotice.forEach(function(notice){
+noticeList.forEach(function(notice){
   notice.resource = sampleResource;
 });
+
+
+
+//this is really fucking important.
+db.Eviction.remove({}, function (err, evictions) {
+
+  db.Eviction.create(evictionList, function(err, evictions) {
+    if (err) { return console.log('ERROR', err); }
+    console.log('all evictions:', evictions);
+    console.log('created', evictions.length, 'evictions');
+    process.exit();
+  });
+
+});
+
+// //this is really fucking important.
+// db.Notice.remove({}, function (err, notices) {
+
+//   db.Notice.create(noticeList, function(err, notices) {
+//     if (err) { return console.log('ERROR', err); }
+//     console.log('all notices:', notices);
+//     console.log('created', notices.length, 'notices');
+//     process.exit();
+//   });
+
+// });
