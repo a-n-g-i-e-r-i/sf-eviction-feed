@@ -9,20 +9,12 @@ $(document).ready(function() {
 // read all evictions
 // *************
 
-$.get('/api/evictions').success(function (eviction) {
-  console.log(eviction);
-  eviction.forEach(function (eviction) {
-    renderEviction(eviction);
-  });
-});
-
-$.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (eviction) {
-  renderEviction(eviction[0]);
-  console.log(eviction[0].estoppel_id);
-  // eviction.forEach( function (element, index) {
-  //  renderEviction(element);
-  // });
-});
+// $.get('/api/evictions').success(function (eviction) {
+//   console.log(eviction);
+//   eviction.forEach(function (eviction) {
+//     renderEviction(eviction);
+//   });
+// });
 
 // *************
 // get eviction by id
@@ -33,54 +25,126 @@ $.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (evicti
 // *************
 
 
-//modal fields update form to server
-$('#evictions').on('click', '.add-notice', function(e) {
-  var id= $(this).parents('.eviction').data('eviction-id');
-  console.log('id',id);
-  $('#notice-modal').data('eviction-id', id);
-  $('#notice-modal').modal();
+// modal fields update form to server
+$('#evictions').on('click', '.link', function(e) {
+  e.preventDefault();
+  var evictionsToHide = $(this).closest('.eviction');
+  // console.log(evictionsToHide);
+
+  evictionsToHide.each(function(){
+    $(this).siblings().not('.notice').toggle();
+  });
+
+  evictionsToHide.next('.notice').toggle();
+
+  $('html, body').animate({
+        scrollTop: $('.eviction-feed').offset().top
+    }, 500);
 });
 
+// handles the modal fields and POSTing the form to the server
+//modal fields update form to server
+$('#evictions').on('click', '.add-notice', function(e) {
+  e.preventDefault();
+  var id= $(this).parents('.eviction').data('eviction-id');
+  console.log('id',id);
+  $('#add-notice-modal').data('eviction-id', id);
+  $('#add-notice-modal').modal();
+});
 
-//render eviction
-function renderEviction(eviction) {
-  console.log('rendering eviction');
+// $('#save-notice').on('click', handleNewNoticeSubmit);
 
-  var evictionHtml = 
-  "        <!-- one eviction -->" +
-  "        <div class='row eviction' data-eviction-id='" + eviction.estoppel_id + "'>" +
-  "          <div class='col-md-10 col-md-offset-1'>" +
-  "            <div class='panel panel-default'>" +
-  "              <div class='panel-body'>" +
-  "              <!-- begin eviction internal row -->" +
-  "                <div class='row'>" +
-  "                  <div class='col-md-9 col-xs-12'>" +
-  "                    <ul class='list-group'>" +
-  "                      <li class='list-group-item'>" +
-  "                        <h4 class='inline-header'>Address:</h4>" +
-  "                        <span class='eviction-address'>" + eviction.address + "</span>" +
-  "                      </li>" +
-                          'buildNoticeHtml(eviction.notice)' +
-  "                    </ul>" +
-  "                  </div>" +
-  "                </div>" +
-  "                <!-- end of eviction internal row -->" +
+// function handleNewNoticeSubmit(e) {
+//   console.log('hi');
+//   var evictionID = $('#notice-modal').data('estoppel-id');
+//   var title = $('#notice-title').val();
+//   var username = $('#username').val();
+//   var comment = $('#comment').val();
+//   var date = $('#date').val();
+//   var image = $('#image').val();
+//   var pdf = $('#pdf').val();
 
-  "              </div>" + // end of panel-body
+//   var formData = {
+//     title: title,
+//     user: username,
+//     comment: comment,
+//     date: date,
+//     resource: [
+//       {image: image},
+//       {pdf: pdf}
+//     ]
+//   };
 
-  "              <div class='panel-footer'>" +
-  "                <button class='btn btn-warning add-notice'>Add Notice</button>" +
-  "                <button class='btn btn-warning edit-notice'>Edit Notice</button>" +
-  "              </div>" +
+//   // var postUrl = '/api/notices';
+//   // console.log('posting to ', postUrl, ' with data ', formData);
 
-  "            </div>" +
-  "          </div>" +
-  "          <!-- end one eviction -->";
+//   // $.post(postUrl, formData)
+//   //   .success(function(notice) {
+//   //     console.log('Notice', notice);
 
-  $('#evictions').prepend(evictionHtml);
+//   //     // // re-get full album and render on page
+//   //     // $.get('/api/evictions/' + evictionID).success(function(eviction) {
+//   //     //   //remove old entry
+//   //     //   $('[data-eviction-id='+ evictionID + ']').remove();
+//   //     //   // render a replacement
+//   //     //   renderAlbum(eviction);
+//   //     // });
+
+//   //     // //clear form
+//   //     // $('#notice-title').val('');
+//   //     // $('#username').val('');
+//   //     // $('#comment').val('');
+//   //     // $('#date').val('');
+//   //     // $('#image').val('');
+//   //     // $('#pdf').val('');
+//   //     // $('#notice-modal').modal('hide');
+
+//   //   });
+// }
+
+// *************
+// render functions
+// *************
+
+// compile eviction handlebars template
+function evictionHandlebarsTemplate() {
+  var source = $('#evictions-template').html();
+  var template = Handlebars.compile(source);
+
+  $.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (eviction) {
+    // eviction results are in an array called `items`
+    // which is nested in the `eviction` object
+    var evictionResult = eviction;
+
+    // pass in data to render in the template
+    var evictionHtml = template({ eviction: evictionResult });
+
+    // append html to the view
+    $('#evictions').append(evictionHtml);
+  });
 }
 
+evictionHandlebarsTemplate();
+
 //render notice
+
+// // compile notice handlebars template
+// function noticeHandlebarsTemplate() {
+//   var source = $('#notices-template').html();
+//   var template = Handlebars.compile(source);
+//   console.log("hi");
+
+
+//   var evictionResult = evictions;
+
+//   // pass in data to render in the template
+//   var evictionHtml = template({ eviction: evictionResult });
+
+//   // append html to the view
+//   $('.notice-modal').append(evictionHtml);
+// }
+
+// noticeHandlebarsTemplate();
 
 //render resource
 
