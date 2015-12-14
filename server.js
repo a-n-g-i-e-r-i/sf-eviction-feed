@@ -12,12 +12,12 @@ var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//require models
-var db = require('./models');
-
 // #########################
 // database
 // #########################
+
+//require models
+var db = require('./models/index');
 
 // #########################
 // routes
@@ -46,31 +46,50 @@ app.get('/api', function apiIndex (req, res) {
   });
 });
 
-//temporary hardcoded data
-var evictionList = [];
-evictionList.push({
-  address: '100 Broadway Ave',
-});
-evictionList.push({
-  address: '101 Broadway Ave',
-});
-evictionList.push({
-  address: '102 Broadway Ave',
-});
-evictionList.push({
-  address: '103 Bpaweifjaoifwjroadway Ave',
-});
-
 app.get('/api/evictions', function evictionIndex (req, res) {
   db.Eviction.find({}, function(err, evictions) {
     res.json(evictions);
   });
 });
 
-//endpoint for data.gov eviction endpoint
-app.get('https://data.sfgov.org/resource/ugv9-ywu3.json', function evictionIndex (req, res) {
-  res.send(data);
+//posting to evictions
+app.post('/api/evictions', function addEviction (req, res) {
+  var body = req.body;
+
+  db.Eviction.remove(req.body, function(err, isThere) {
+    console.log(isThere);
+  });
+
+  db.Eviction.create(req.body, function(err, eviction) {
+    res.json(eviction);
+  });
 });
+
+app.get('/api/notices', function noticeIndex (req, res) {
+  db.Notice.find({}, function(err, notices) {
+    res.json(notices);
+    console.log(notices);
+  });
+});
+
+//post notice to an eviction
+app.post('/api/notices', function noticeCreate(req, res) {
+  console.log('body', req.body);
+  var notice = new db.Notice(req.body);
+    eviction.notice.push(notice);
+    eviction.save(function(err, savedNotice) {
+      if (err) { console.log('error', err); }
+      console.log('eviction with new notice saved:', savedNotice);
+      res.json(notice);
+    });
+
+});
+
+
+// //endpoint for data.gov eviction endpoint
+// app.get('https://data.sfgov.org/resource/ugv9-ywu3.json', function evictionIndex (req, res) {
+//   res.send(data);
+// });
 
 // #########################
 // server
