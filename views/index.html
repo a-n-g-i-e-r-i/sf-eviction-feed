@@ -81,27 +81,27 @@
           <!-- eviction handlebars template -->
           <script id="evictions-template" type="text/x-handlebars-template">
             {{#each eviction}}
-              <div class='col-md-4 eviction' data-eviction-id="{{estoppel_id}}" style="background-image:url('https://a2.muscache.com/im/pictures/76288486/cfb45c65_original.jpg?aki_policy=x_medium')">{{eviction.estoppel_id}}
+              <div class='col-md-4 eviction' data-eviction-id="{{estoppel_id}}" style="background-image:url('https://a2.muscache.com/im/pictures/76288486/cfb45c65_original.jpg?aki_policy=x_medium')">
                 <div class="link discovery-card darken-on-hover discovery-listing">
                   <div class="panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label">
                     <div class="va-middle text-center text-contrast">
                       <div class="h2">
-                        <strong>{{address}}</strong>{{eviction.address}}
+                        <strong>{{address}}</strong>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class='col-md-12 notice' data-eviction-id="{{estoppel_id}}">{{eviction.estoppel_id}}
+              <div class='col-md-12 notice' data-eviction-id="{{estoppel_id}}">
                 <div>
                   <span>Address: {{address}}</span>
                   <br>
-                  <span>Supervisor District: {{supervisor_district}}</span>{{eviction.supervisor_district}}
+                  <span>Supervisor District: {{supervisor_district}}</span>
                   <br>
-                  <span>Filed On: {{file_date}}</span>{{eviction.file_date}}
+                  <span>Filed On: {{file_date}}</span>
                   <br>
-                  <span>Neighborhood: {{neighborhood}}</span>{{eviction.neighborhood}}
+                  <span>Neighborhood: {{neighborhood}}</span>
                   <br>
                   
                 </div>
