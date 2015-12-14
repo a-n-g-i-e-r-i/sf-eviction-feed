@@ -81,7 +81,7 @@
           <!-- eviction handlebars template -->
           <script id="evictions-template" type="text/x-handlebars-template">
             {{#each eviction}}
-              <div class='col-md-4 eviction' data-eviction-id="{{estoppel_id}}" style="background-image:url('https://a2.muscache.com/im/pictures/76288486/cfb45c65_original.jpg?aki_policy=x_medium')">
+              <div class='col-md-4 eviction' data-eviction-id="{{eviction_id}}" style="background-image:url('https://a2.muscache.com/im/pictures/76288486/cfb45c65_original.jpg?aki_policy=x_medium')">
                 <div class="link discovery-card darken-on-hover discovery-listing">
                   <div class="panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label">
                     <div class="va-middle text-center text-contrast">
@@ -93,13 +93,15 @@
                 </div>
               </div>
 
-              <div class='col-md-12 notice' data-eviction-id="{{estoppel_id}}">
+              <div class='col-md-12 notice' data-eviction-id="{{eviction_id}}">
                 <div>
+                  <span>Estoppel ID: {{eviction_id}}</span>
+                  <br>
                   <span>Address: {{address}}</span>
                   <br>
                   <span>Supervisor District: {{supervisor_district}}</span>
                   <br>
-                  <span>Filed On: {{file_date}}</span>
+                  <span>Filed On: {{filed_on}}</span>
                   <br>
                   <span>Neighborhood: {{neighborhood}}</span>
                   <br>
