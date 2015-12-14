@@ -73,18 +73,15 @@ app.get('/api/notices', function noticeIndex (req, res) {
 });
 
 //post notice to an eviction
-app.post('/api/notices', function noticeCreate(req, res) {
-  console.log('body', req.body);
-  var notice = new db.Notice(req.body);
-    eviction.notice.push(notice);
-    eviction.save(function(err, savedNotice) {
-      if (err) { console.log('error', err); }
-      console.log('eviction with new notice saved:', savedNotice);
-      res.json(notice);
-    });
+app.post('/api/notices', function addNotice(req, res) {
+  var body = req.body;
+
+  db.Notice.create(body, function(err, notice) {
+    res.json(notice);
+    console.log('eviction with new notice saved:', notice);
+  });
 
 });
-
 
 // //endpoint for data.gov eviction endpoint
 // app.get('https://data.sfgov.org/resource/ugv9-ywu3.json', function evictionIndex (req, res) {

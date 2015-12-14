@@ -107,7 +107,7 @@
                   <br>
                   
                 </div>
-                <button class='btn btn-warning add-notice'>Add Notice</button>
+                <button class='btn btn-warning add-notice' data-eviction-id="{{eviction_id}}">Add Notice</button>
               </div>
 
             {{/each}}
@@ -142,58 +142,60 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Add Notice</h4>
         </div>
+
+
         <div class="modal-body">
           <fieldset class='form-horizontal'>
 
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="notice-title">Notice Title</label>
-            <div class="col-md-4">
-            <input id="notice-title" name="notice-title" type="text" placeholder="" class="form-control input-md" required="">
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="notice-title">Notice Title</label>
+              <div class="col-md-4">
+              <input id="notice-title" name="notice-title" type="text" placeholder="" class="form-control input-md" required>
 
+              </div>
             </div>
-          </div>
 
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="username">Username</label>
-            <div class="col-md-4">
-            <input id="username" name="username" type="text" placeholder="" class="form-control input-md">
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="username">Username</label>
+              <div class="col-md-4">
+              <input id="username" name="username" type="text" placeholder="" class="form-control input-md" required>
 
+              </div>
             </div>
-          </div>
 
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="comment">Comment</label>
-            <div class="col-md-4">
-            <textarea id="comment" name="comment" type="text" placeholder="" class="form-control input-md" cols="50" rows="10"></textarea>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="comment">Comment</label>
+              <div class="col-md-4">
+              <textarea id="comment" name="comment" type="text" placeholder="" class="form-control input-md" cols="50" rows="10" required></textarea>
+              </div>
             </div>
-          </div>
 
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="date">Date</label>
-            <div class="col-md-4">
-            <input id="date" name="date" type="text" placeholder="" class="form-control input-md">
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="date">Date</label>
+              <div class="col-md-4">
+              <input id="date" name="date" type="text" placeholder="" class="form-control input-md" required>
+              </div>
             </div>
-          </div>
 
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="image">Image</label>
-            <div class="col-md-4">
-            <input id="image" name="image" type="text" placeholder="" class="form-control input-md">
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="image">Image</label>
+              <div class="col-md-4">
+              <input id="image" name="image" type="text" placeholder="" class="form-control input-md" required>
+              </div>
             </div>
-          </div>
 
-                      <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="pdf">PDF</label>
-            <div class="col-md-4">
-            <input id="pdf" name="pdf" type="text" placeholder="" class="form-control input-md">
+                        <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="pdf">PDF</label>
+              <div class="col-md-4">
+              <input id="pdf" name="pdf" type="text" placeholder="" class="form-control input-md">
+              </div>
             </div>
-          </div>
 
           </fieldset>
 
@@ -202,6 +204,8 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-success" id="save-notice">Save changes</button>
         </div>
+
+
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
