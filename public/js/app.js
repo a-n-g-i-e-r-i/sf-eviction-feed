@@ -83,23 +83,32 @@ $('#evictions').on('click', '.link', function(e) {
 //modal fields update form to server
 $('#evictions').on('click', '.add-notice', function(e) {
   e.preventDefault();
-  var id= $(this).parents().data('eviction-id');
+  var id= $('.add-notice').data('eviction-id');
   console.log('id',id);
   $('#add-notice-modal').data('eviction-id', id);
   $('#add-notice-modal').modal();
 });
 
-// $('#save-notice').on('click', handleNewNoticeSubmit);
+$('#save-notice').on('click', handleNewNoticeSubmit);
 
-// function handleNewNoticeSubmit(e) {
-//   console.log('hi');
-//   var evictionID = $('#notice-modal').data('eviction-id');
-//   var title = $('#notice-title').val();
-//   var username = $('#username').val();
-//   var comment = $('#comment').val();
-//   var date = $('#date').val();
-//   var image = $('#image').val();
-//   var pdf = $('#pdf').val();
+function handleNewNoticeSubmit(e) {
+  e.preventDefault();
+
+  var evictionId = $('#add-notice-modal').data('eviction-id');
+  var title = $('#notice-title').val();
+  var username = $('#username').val();
+  var comment = $('#comment').val();
+  var date = $('#date').val();
+  var image = $('#image').val();
+  var pdf = $('#pdf').val();
+
+  console.log(evictionId);
+  console.log(title);
+  console.log(username);
+  console.log(comment);
+  console.log(date);
+  console.log(image);
+  console.log(pdf);
 
 //   var formData = {
 //     title: title,
@@ -136,8 +145,8 @@ $('#evictions').on('click', '.add-notice', function(e) {
 //   //     // $('#pdf').val('');
 //   //     // $('#notice-modal').modal('hide');
 
-//   //   });
-// }
+    // });
+}
 
 // *************
 // render functions
@@ -145,20 +154,20 @@ $('#evictions').on('click', '.add-notice', function(e) {
 
 //render notice
 
-// // compile notice handlebars template
+// compile notice handlebars template
 // function noticeHandlebarsTemplate() {
-//   var source = $('#notices-template').html();
-//   var template = Handlebars.compile(source);
-//   console.log("hi");
+  // var source = $('#notices-template').html();
+  // var template = Handlebars.compile(source);
+  // console.log("hi");
 
 
-//   var evictionResult = evictions;
+  // var evictionResult = evictions;
 
-//   // pass in data to render in the template
-//   var evictionHtml = template({ eviction: evictionResult });
+  // // pass in data to render in the template
+  // var evictionHtml = template({ eviction: evictionResult });
 
-//   // append html to the view
-//   $('.notice-modal').append(evictionHtml);
+  // // append html to the view
+  // $('.notice-modal').append(evictionHtml);
 // }
 
 // noticeHandlebarsTemplate();
