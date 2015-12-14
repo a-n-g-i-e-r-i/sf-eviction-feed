@@ -6,8 +6,12 @@ var Notice = require('./notice.js');
 
 //defines evictionSchema
 var evictionSchema = new Schema ({
+  eviction_id: String,
   address: String,
-  notice: [Notice.schema],
+  supervisor_district: Number,
+  filed_on: String,
+  neighborhood: String,
+  // notice: [Notice.schema],
 });
 
 //defines Eviction by evictionSchema
