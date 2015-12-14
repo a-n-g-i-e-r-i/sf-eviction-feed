@@ -6,17 +6,50 @@ $(document).ready(function() {
 // #########################
 
 // *************
+// consume external api
+// *************
+
+$.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (eviction) {
+  eviction.forEach( function(eviction) {
+    var evictionNew = {
+      eviction_id: eviction.estoppel_id,
+      address: eviction.address,
+      supervisor_district: eviction.supervisor_district,
+      filed_on: eviction.file_date,
+      neighborhood: eviction.neighborhood,
+      // notice: ''
+    };
+
+    $.post('/api/evictions', evictionNew)
+      .success(function(evictionNew) {
+    });
+
+  });
+});
+
+// *************
 // read all evictions
 // *************
 
-$.get('/api/evictions').success(function (eviction) {
-  eviction.forEach(function (eviction) {
-    // renderEviction(eviction);
+// compile eviction handlebars template
+function evictionHandlebarsTemplate() {
+  var source = $('#evictions-template').html();
+  var template = Handlebars.compile(source);
 
-    console.log(eviction);
+  $.get('/api/evictions').success(function (eviction) {
+    // eviction results are in an array called `items`
+    // which is nested in the `eviction` object
+    var evictionResult = eviction;
+
+    // pass in data to render in the template
+    var evictionHtml = template({ eviction: evictionResult });
+
+    // append html to the view
+    $('#evictions').append(evictionHtml);
   });
-  
-});
+}
+
+evictionHandlebarsTemplate();
 
 // *************
 // get eviction by id
@@ -107,42 +140,6 @@ $('#evictions').on('click', '.add-notice', function(e) {
 // *************
 // render functions
 // *************
-
-// compile eviction handlebars template
-function evictionHandlebarsTemplate() {
-  var source = $('#evictions-template').html();
-  var template = Handlebars.compile(source);
-
-  $.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (eviction) {
-    // eviction results are in an array called `items`
-    // which is nested in the `eviction` object
-    var evictionResult = eviction;
-
-    // pass in data to render in the template
-    var evictionHtml = template({ eviction: evictionResult });
-
-    // append html to the view
-    $('#evictions').append(evictionHtml);
-
-    evictionResult.forEach( function(eviction) {
-      var evictionNew = {
-        eviction_id: eviction.estoppel_id,
-        address: eviction.address,
-        supervisor_district: eviction.supervisor_district,
-        filed_on: eviction.file_date,
-        neighborhood: eviction.neighborhood,
-        // notice: ''
-      };
-
-      $.post('/api/evictions', evictionNew)
-        .success(function(evictionNew) {
-      });
-
-    });
-  });
-}
-
-evictionHandlebarsTemplate();
 
 //render notice
 
