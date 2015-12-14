@@ -65,6 +65,8 @@ $('#evictions').on('click', '.link', function(e) {
   e.preventDefault();
   var evictionsToHide = $(this).closest('.eviction');
   // console.log(evictionsToHide);
+  var id= $(this).parents().data('eviction-id');
+  console.log('id',id);
 
   evictionsToHide.each(function(){
     $(this).siblings().not('.notice').toggle();
@@ -81,7 +83,7 @@ $('#evictions').on('click', '.link', function(e) {
 //modal fields update form to server
 $('#evictions').on('click', '.add-notice', function(e) {
   e.preventDefault();
-  var id= $(this).parents('.eviction').data('eviction-id');
+  var id= $(this).parents().data('eviction-id');
   console.log('id',id);
   $('#add-notice-modal').data('eviction-id', id);
   $('#add-notice-modal').modal();
@@ -91,7 +93,7 @@ $('#evictions').on('click', '.add-notice', function(e) {
 
 // function handleNewNoticeSubmit(e) {
 //   console.log('hi');
-//   var evictionID = $('#notice-modal').data('estoppel-id');
+//   var evictionID = $('#notice-modal').data('eviction-id');
 //   var title = $('#notice-title').val();
 //   var username = $('#username').val();
 //   var comment = $('#comment').val();
