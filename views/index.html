@@ -80,7 +80,7 @@
           <!-- eviction handlebars template -->
           <script id="evictions-template" type="text/x-handlebars-template">
             {{#each eviction}}
-              <div class='col-md-4 eviction' data-eviction-id="{{eviction_id}}" style="background-image:url('https://a2.muscache.com/im/pictures/76288486/cfb45c65_original.jpg?aki_policy=x_medium')">
+              <div data-id="{{_id}}" class='col-md-4 eviction' data-eviction-id="{{eviction_id}}" style="background-image:url('https://a2.muscache.com/im/pictures/76288486/cfb45c65_original.jpg?aki_policy=x_medium')">
                 <div class="link discovery-card darken-on-hover discovery-listing">
                   <div class="panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label">
                     <div class="va-middle text-center text-contrast">
@@ -91,7 +91,7 @@
                   </div>
                 </div>
               </div>
-              <div class='col-md-12 notice' data-eviction-id="{{eviction_id}}">
+              <div class='col-md-12 notice' data-id="{{_id}}" data-eviction-id="{{eviction_id}}">
                 <div>
                   <span>Estoppel ID: {{eviction_id}}</span>
                   <br>
@@ -104,7 +104,7 @@
                   <span>Neighborhood: {{neighborhood}}</span>
                   <br>   
                 </div>
-                <button class='btn btn-warning add-notice' data-eviction-id="{{eviction_id}}">Add Notice</button>
+                <button class='btn btn-warning add-notice' data-id="{{_id}}" data-eviction-id="{{eviction_id}}">Add Notice</button>
               </div>
             {{/each}}
           </script>
@@ -128,7 +128,7 @@
             <!-- notice handlebars template -->
             <script id="notices-template" type="text/x-handlebars-template">
               {{#each notice}}
-                <div class='col-md-12' data-eviction-id="{{eviction_id}}">
+                <div class='col-md-12' data-id="{{_id}}" data-eviction-id="{{eviction_id}}">
                   <div>
                     <span>Estoppel ID: {{eviction_id}}</span>
                     <br>
@@ -137,8 +137,9 @@
                     <span>Username: {{user}}</span>
                     <br>
                     <span>Date: {{date}}</span>
-                    <br>  
+                    <br>
                   </div>
+                  <button class='btn btn-danger delete-notice'>Delete Notice</button>
                 </div>
               {{/each}}
             </script>
