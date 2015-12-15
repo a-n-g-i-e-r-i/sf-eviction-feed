@@ -1,3 +1,30 @@
+h1 {
+  font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 26.4px;
+  padding: 15px;
+  margin: 30px;
+}
+h3 {
+  font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 15.4px;
+}
+p {
+  font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
 .jumbotron {
   background-color: rgb(255, 255, 255);
   background-repeat: no-repeat;
@@ -11,6 +38,8 @@
 .row {
   background-size: cover;
   margin: 0 auto;
+  padding: 30px;
+  margin: 30px;
 }
 
 .eviction {
