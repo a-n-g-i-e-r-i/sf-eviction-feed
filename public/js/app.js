@@ -130,6 +130,23 @@ function handleNewNoticeSubmit(e) {
   $('#add-notice-modal').modal('hide');
 }
 
+
+// *************
+// delete notice
+// *************
+$('#notices').on('click', '.delete-notice', function(e) {
+  var id= $(this).parents('[data-id]').data('id');
+  console.log('id',id);
+  $.ajax({
+    url: '/api/notices/' + id,
+    method: 'DELETE',
+    success: function destroy(notice) {
+      console.log('album after DELETE', notice);
+      $('[data-notice-id=' + id + ']').empty();
+    }
+  });
+});
+
 // *************
 // render notices by eviction id
 // *************
