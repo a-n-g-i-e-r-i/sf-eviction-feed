@@ -11,18 +11,24 @@ $(document).ready(function() {
 
 $.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (eviction) {
   eviction.forEach( function(eviction) {
+
+    var latitude = parseFloat(eviction.client_location.latitude);
+    var longitude = parseFloat(eviction.client_location.longitude);
     var evictionNew = {
       eviction_id: eviction.estoppel_id,
       address: eviction.address,
       supervisor_district: eviction.supervisor_district,
       filed_on: eviction.file_date,
       neighborhood: eviction.neighborhood,
+      lat_lng: [latitude, longitude]
       // notice: ''
     };
 
     $.post('/api/evictions', evictionNew)
       .success(function(evictionNew) {
+        // console.log(evictionNew);
     });
+
 
   });
 });
@@ -68,10 +74,10 @@ $('#evictions').on('click', '.link', function(e) {
   console.log('id',id);
 
   evictionsToHide.each(function(){
-    $(this).siblings().not('.notice').toggle();
+    $(this).siblings().not('.eviction-details').toggle();
   });
 
-  evictionsToHide.next('.notice').toggle();
+  evictionsToHide.next('.eviction-details').toggle();
 
   $('html, body').animate({
         scrollTop: $('.eviction-feed').offset().top
@@ -219,6 +225,18 @@ function noticeHandlebarsTemplate() {
 }
 
 noticeHandlebarsTemplate();
+
+// //add photo to website
+// //declare google_api_key
+// var env = process.env;
+// var api_key = env.google_api_key;
+
+// function appendApiKey() {
+//   $('.eviction').attr('style','https://maps.googleapis.com/maps/api/streetview?size=300x300&location={{lat_lng.[0]}},{{lat_lng.[1]}}&fov=90&pitch=25&key=AIzaSyANYzXCljxT5WA5OuPsOy97hQvBGq7TCqQ')
+// style', 'background-image:url('https://maps.googleapis.com/maps/api/streetview?size=300x300&location={{lat_lng.[0]}},{{lat_lng.[1]}}&fov=90&pitch=25&key=AIzaSyANYzXCljxT5WA5OuPsOy97hQvBGq7TCqQ');
+// }
+
+// appendApiKey();
 
 // #########################
 // SPA Navigation
