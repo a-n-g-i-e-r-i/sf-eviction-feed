@@ -51,6 +51,12 @@ p {
   float: left;
   display: inline-block;
   vertical-align: middle;
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.eviction:hover {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
 }
 
 .link {
@@ -63,9 +69,11 @@ p {
 a:hover { 
   text-decoration: none;
   color: white;
+  opacity: 1;
+  filter: alpha(opacity=100);
 }
 
-.notice {
+.eviction-details {
   display: none;
   padding: 30px;
   margin-bottom: 30px;
