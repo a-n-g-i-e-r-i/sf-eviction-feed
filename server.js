@@ -83,6 +83,17 @@ app.delete('/api/notices/:id', function deleteNotice(req, res) {
   });
 });
 
+app.put('/api/notices/:id', function updateNotice(req, res) {
+  console.log(req.body);
+  db.Notice.update({_id: req.params.id}, req.body, function(err, notice) {
+    if (err) {console.log('error, err'); }
+    console.log("Notice Updated");
+  });
+  db.Notice.findOne({_id: req.params.id}, function(err, notice) {
+    res.json(notice);
+  });
+});
+
 // #########################
 // server
 // #########################
