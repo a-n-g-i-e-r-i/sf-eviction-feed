@@ -141,11 +141,64 @@ $('#notices').on('click', '.delete-notice', function(e) {
     url: '/api/notices/' + id,
     method: 'DELETE',
     success: function destroy(notice) {
-      console.log('album after DELETE', notice);
+      console.log('notice after DELETE', notice);
       $('[data-notice-id=' + id + ']').empty();
     }
   });
 });
+
+// **********************************************************************
+// *************
+// update notice
+// *************
+
+$('#notices').on('click', '.edit-notice', function(e) {
+  e.preventDefault();
+  var id= $(this).data('eviction-id');
+  console.log('id',id);
+  $('#add-notice-modal').data('eviction-id', id);
+  $('#add-notice-modal').modal();
+});
+
+$('#save-notice').on('click', handleUpdateNoticeSubmit);
+
+function handleUpdateNoticeSubmit(e) {
+  e.preventDefault();
+
+  var noticeId = $('#add-notice-modal').data('id');
+  var evictionId = $('#add-notice-modal').data('eviction-id');
+  var title = $('#notice-title').val();
+  var username = $('#username').val();
+  var comment = $('#comment').val();
+  var date = $('#date').val();
+  var image = $('#image').val();
+  var pdf = $('#pdf').val();
+
+  var formData = {
+    eviction_id: evictionId,
+    title: title,
+    user: username,
+    comment: comment,
+    date: date,
+    resource: [
+      {image: image},
+      {pdf: pdf}
+    ]
+  };
+
+  $.ajax({
+    url: '/api/notices/' + noticeId,
+    method: 'PUT',
+    data: formData,
+    success: function update(notice) {
+      console.log('notice after PUT', notice);
+    }
+  });
+
+  $('form')[0].reset();
+  $('#add-notice-modal').modal('hide');
+}
+//***********************************************************************************************
 
 // *************
 // render notices by eviction id
@@ -166,8 +219,6 @@ function noticeHandlebarsTemplate() {
 }
 
 noticeHandlebarsTemplate();
-
-//render resource
 
 // #########################
 // SPA Navigation
