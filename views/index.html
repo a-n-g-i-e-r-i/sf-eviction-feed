@@ -5,7 +5,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>SF Eviction Feed</title>
+  <title>EvictUs</title>
 
   <!-- stylesheets -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -27,8 +27,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-9 text-center">
-          <h1>Notice</h1>
-          <p>Evictions in San Francisco</p>
+          <h1>EvictUs</h1>
+          <p>Latin <strong><em>evictus | </em></strong>to overcome and expel, conquer, subdue, vanquish; prevail over; supplant</i></p>
         </div>
         <div class="col-md-3 text-center">
           <div class="side-row">
@@ -114,31 +114,6 @@
   </div>
   <!-- end eviction feed -->
 
-  <!-- notices -->
-  <div class='row'>
-    <div id='notices'>
-      <!-- notice handlebars template -->
-      <script id="notices-template" type="text/x-handlebars-template">
-        {{#each notice}}
-          <div class='col-md-12 notice' data-eviction-id="{{eviction_id}}">
-            <div>
-              <span>Estoppel ID: {{eviction_id}}</span>
-              <br>
-              <span>Title: {{title}}</span>
-              <br>
-              <span>Username: {{user}}</span>
-              <br>
-              <span>Date: {{date}}</span>
-              <br>  
-            </div>
-            <button class='btn btn-warning add-notice' data-notice-id="{{notice_id}}">Add Notice</button>
-          </div>
-        {{/each}}
-      </script>
-    </div>
-  </div>
-  <!-- end notice feed -->
-
   <!-- begin map -->
   <div class="view-map jumbotron">
     <section class="container">
@@ -147,6 +122,29 @@
           <h1>SF Eviction Map</h1>
         </div>
       </div>
+        <!-- notices -->
+        <div class='row'>
+          <div id='notices'>
+            <!-- notice handlebars template -->
+            <script id="notices-template" type="text/x-handlebars-template">
+              {{#each notice}}
+                <div class='col-md-12' data-eviction-id="{{eviction_id}}">
+                  <div>
+                    <span>Estoppel ID: {{eviction_id}}</span>
+                    <br>
+                    <span>Title: {{title}}</span>
+                    <br>
+                    <span>Username: {{user}}</span>
+                    <br>
+                    <span>Date: {{date}}</span>
+                    <br>  
+                  </div>
+                </div>
+              {{/each}}
+            </script>
+          </div>
+        </div>
+        <!-- end notice feed -->
 
       <!-- map -->
       <div id='map'>
