@@ -82,7 +82,7 @@ $('#evictions').on('click', '.link', function(e) {
 //modal fields update form to server
 $('#evictions').on('click', '.add-notice', function(e) {
   e.preventDefault();
-  var id= $('.add-notice').data('eviction-id');
+  var id= $(this).data('eviction-id');
   console.log('id',id);
   $('#add-notice-modal').data('eviction-id', id);
   $('#add-notice-modal').modal();
@@ -138,19 +138,14 @@ function handleNewNoticeSubmit(e) {
 function noticeHandlebarsTemplate() {
   var source = $('#notices-template').html();
   var template = Handlebars.compile(source);
-  console.log("hi");
 
   $.get('/api/notices').success(function (notice) {
-    // eviction results are in an array called `items`
-    // which is nested in the `eviction` object
     var noticeResult = notice;
-
-    // pass in data to render in the template
     var noticeHtml = template({ notice: noticeResult });
 
-    // append html to the view
     $('#notices').append(noticeHtml);
   });
+
 }
 
 noticeHandlebarsTemplate();
