@@ -76,8 +76,7 @@
 
       <!-- evictions -->
       <div class='row'>
-        <div id='evictions'
-
+        <div id='evictions'>
           <!-- eviction handlebars template -->
           <script id="evictions-template" type="text/x-handlebars-template">
             {{#each eviction}}
@@ -92,7 +91,6 @@
                   </div>
                 </div>
               </div>
-
               <div class='col-md-12 notice' data-eviction-id="{{eviction_id}}">
                 <div>
                   <span>Estoppel ID: {{eviction_id}}</span>
@@ -104,12 +102,10 @@
                   <span>Filed On: {{filed_on}}</span>
                   <br>
                   <span>Neighborhood: {{neighborhood}}</span>
-                  <br>
-                  
+                  <br>   
                 </div>
                 <button class='btn btn-warning add-notice' data-eviction-id="{{eviction_id}}">Add Notice</button>
               </div>
-
             {{/each}}
           </script>
         </div>
@@ -117,6 +113,31 @@
     </section>
   </div>
   <!-- end eviction feed -->
+
+  <!-- notices -->
+  <div class='row'>
+    <div id='notices'>
+      <!-- notice handlebars template -->
+      <script id="notices-template" type="text/x-handlebars-template">
+        {{#each notice}}
+          <div class='col-md-12 notice' data-eviction-id="{{eviction_id}}">
+            <div>
+              <span>Estoppel ID: {{eviction_id}}</span>
+              <br>
+              <span>Title: {{title}}</span>
+              <br>
+              <span>Username: {{user}}</span>
+              <br>
+              <span>Date: {{date}}</span>
+              <br>  
+            </div>
+            <button class='btn btn-warning add-notice' data-notice-id="{{notice_id}}">Add Notice</button>
+          </div>
+        {{/each}}
+      </script>
+    </div>
+  </div>
+  <!-- end notice feed -->
 
   <!-- begin map -->
   <div class="view-map jumbotron">
@@ -146,6 +167,7 @@
 
         <div class="modal-body">
           <fieldset class='form-horizontal'>
+          <form>
 
             <!-- Text input-->
             <div class="form-group">
@@ -197,6 +219,7 @@
               </div>
             </div>
 
+          </form>
           </fieldset>
 
         </div>
