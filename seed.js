@@ -10,6 +10,7 @@ evictionList.push({
   supervisor_district: '1',
   filed_on: '2015-10-29T00:00:00',
   neighborhood: 'Mission',
+  lat_lng: [37.7932081771262,37.7932081771262]
   // notice: ''
 });
 
