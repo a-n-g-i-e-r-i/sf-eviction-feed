@@ -91,7 +91,7 @@
                   </div>
                 </div>
               </div>
-              <div class='col-md-12 notice' data-id="{{_id}}" data-eviction-id="{{eviction_id}}">
+              <div class='col-md-12 notice' data-eviction-id="{{eviction_id}}">
                 <div>
                   <span>Estoppel ID: {{eviction_id}}</span>
                   <br>
@@ -104,7 +104,7 @@
                   <span>Neighborhood: {{neighborhood}}</span>
                   <br>   
                 </div>
-                <button class='btn btn-warning add-notice' data-id="{{_id}}" data-eviction-id="{{eviction_id}}">Add Notice</button>
+                <button class='btn btn-warning add-notice' data-eviction-id="{{eviction_id}}">Add Notice</button>
               </div>
             {{/each}}
           </script>
@@ -139,7 +139,8 @@
                     <span>Date: {{date}}</span>
                     <br>
                   </div>
-                  <button class='btn btn-danger delete-notice'>Delete Notice</button>
+                  <button class='btn btn-warning delete-notice'>Delete Notice</button>
+                  <button class='btn btn-warning edit-notice'>Edit Notice</button>
                 </div>
               {{/each}}
             </script>
