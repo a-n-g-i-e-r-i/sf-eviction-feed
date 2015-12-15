@@ -23,7 +23,7 @@
 <body>
 
   <!-- begin navigation -->
-  <div class="main-content jumbotron">
+  <div class="main-content jumbotron" img>
     <div class="container">
       <div class="row">
         <div class="col-md-9 text-center">
@@ -80,7 +80,7 @@
           <!-- eviction handlebars template -->
           <script id="evictions-template" type="text/x-handlebars-template">
             {{#each eviction}}
-              <div data-id="{{_id}}" class='col-md-4 eviction' data-eviction-id="{{eviction_id}}" style="background-image:url('https://a2.muscache.com/im/pictures/76288486/cfb45c65_original.jpg?aki_policy=x_medium')">
+              <div data-id="{{_id}}" class='col-md-4 eviction' data-eviction-id="{{eviction_id}}" style="background-image:url('https://maps.googleapis.com/maps/api/streetview?size=300x300&location={{lat_lng.[0]}},{{lat_lng.[1]}}&fov=90&pitch=25&key=AIzaSyANYzXCljxT5WA5OuPsOy97hQvBGq7TCqQ')">
                 <div class="link discovery-card darken-on-hover discovery-listing">
                   <div class="panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label">
                     <div class="va-middle text-center text-contrast">
@@ -91,7 +91,7 @@
                   </div>
                 </div>
               </div>
-              <div class='col-md-12 notice' data-eviction-id="{{eviction_id}}">
+              <div class='col-md-12 eviction-details' data-eviction-id="{{eviction_id}}">
                 <div>
                   <span>Estoppel ID: {{eviction_id}}</span>
                   <br>
@@ -128,7 +128,7 @@
             <!-- notice handlebars template -->
             <script id="notices-template" type="text/x-handlebars-template">
               {{#each notice}}
-                <div class='col-md-12' data-id="{{_id}}" data-eviction-id="{{eviction_id}}">
+                <div class='col-md-12 notice' data-id="{{_id}}" data-eviction-id="{{eviction_id}}">
                   <div>
                     <span>Estoppel ID: {{eviction_id}}</span>
                     <br>
