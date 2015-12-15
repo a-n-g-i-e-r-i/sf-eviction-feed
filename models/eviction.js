@@ -11,6 +11,7 @@ var evictionSchema = new Schema ({
   supervisor_district: Number,
   filed_on: String,
   neighborhood: String,
+  lat_lng: []
   // notice: [Notice.schema],
 });
 
