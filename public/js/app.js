@@ -220,11 +220,22 @@ function noticeHandlebarsTemplate() {
     var noticeHtml = template({ notice: noticeResult });
 
     $('#notices').append(noticeHtml);
+    
+    notice.forEach( function sortNoticesByEvictionId(notice) {
+      var id = notice.eviction_id;
+      $(".notice[data-eviction-id=" + id + "]").insertAfter(".eviction[data-eviction-id=" + id + "]");
+    });
+
   });
 
 }
 
 noticeHandlebarsTemplate();
+
+// function sortNoticesByEvictionId() {
+//   var id = 'M152971';
+//   $(".notice[data-eviction-id=" + id + "]").insertAfter(".eviction[data-eviction-id=" + id + "]");
+// }
 
 // #########################
 // SPA Navigation
