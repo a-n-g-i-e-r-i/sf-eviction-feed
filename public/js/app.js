@@ -226,18 +226,6 @@ function noticeHandlebarsTemplate() {
 
 noticeHandlebarsTemplate();
 
-// //add photo to website
-// //declare google_api_key
-// var env = process.env;
-// var api_key = env.google_api_key;
-
-// function appendApiKey() {
-//   $('.eviction').attr('style','https://maps.googleapis.com/maps/api/streetview?size=300x300&location={{lat_lng.[0]}},{{lat_lng.[1]}}&fov=90&pitch=25&key=AIzaSyANYzXCljxT5WA5OuPsOy97hQvBGq7TCqQ')
-// style', 'background-image:url('https://maps.googleapis.com/maps/api/streetview?size=300x300&location={{lat_lng.[0]}},{{lat_lng.[1]}}&fov=90&pitch=25&key=AIzaSyANYzXCljxT5WA5OuPsOy97hQvBGq7TCqQ');
-// }
-
-// appendApiKey();
-
 // #########################
 // SPA Navigation
 // #########################
