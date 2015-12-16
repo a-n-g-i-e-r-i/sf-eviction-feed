@@ -5,8 +5,6 @@ h1 {
   font-variant: normal;
   font-weight: 500;
   line-height: 26.4px;
-  padding: 15px;
-  margin: 30px;
 }
 h3 {
   font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
@@ -37,26 +35,29 @@ p {
 
 .row {
   background-size: cover;
-  margin: 0 auto;
-  padding: 30px;
-  margin: 30px;
 }
 
 .eviction {
-  padding: 30px;
   margin-bottom: 30px;
   margin-right: 30px;
   height: 300px;
   width: 300px;
   float: left;
   display: inline-block;
-  vertical-align: middle;
   opacity: 1;
   filter: alpha(opacity=100);
 }
 .eviction:hover {
   opacity: 0.4;
   filter: alpha(opacity=40);
+}
+
+.eviction-details {
+/*  display: none;*/
+  width: 300px;
+  height: 300px;
+  float: left;
+  vertical-align: middle;
 }
 
 .link {
@@ -71,17 +72,6 @@ a:hover {
   color: white;
   opacity: 1;
   filter: alpha(opacity=100);
-}
-
-.eviction-details {
-  display: none;
-  padding: 30px;
-  margin-bottom: 30px;
-  margin-right: 30px;
-  width: 600px;
-  height: 300px;
-  float: left;
-  vertical-align: middle;
 }
 
 .btn {
