@@ -68,21 +68,15 @@ evictionHandlebarsTemplate();
 $('#evictions').on('click', '.link', function(e) {
   e.preventDefault();
 
-  $('.eviction').next('.eviction-details').hide();
-
   var evictionsToHide = $(this).closest('.eviction');
 
   var id= $(this).parents().data('eviction-id');
   console.log('id',id);
 
-  // evictionsToHide.each(function(){
-  //   $(this).siblings().not('.eviction-details').toggle();
-  // });
-
-  evictionsToHide.next('.eviction-details').toggle();
+  evictionsToHide.next('.eviction-details').show();
 
   $('html, body').animate({
-        scrollTop: $(this).offset(15).top
+        scrollTop: evictionsToHide.offset().top
     }, 500);
 });
 
@@ -219,6 +213,10 @@ function noticeHandlebarsTemplate() {
   var template = Handlebars.compile(source);
 
   $.get('/api/notices').success(function (notice) {
+    var noticeResult = notice;
+    var noticeHtml = template({ notice: noticeResult });
+
+    $('#notices').append(noticeHtml);
     
     // notice.forEach( function sortNoticesByEvictionId(notice) {
     //   var id = notice.eviction_id;
