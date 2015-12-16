@@ -21,7 +21,6 @@ $.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (evicti
       filed_on: eviction.file_date,
       neighborhood: eviction.neighborhood,
       lat_lng: [latitude, longitude]
-      // notice: ''
     };
 
     $.post('/api/evictions', evictionNew)
@@ -68,19 +67,22 @@ evictionHandlebarsTemplate();
 // modal fields update form to server
 $('#evictions').on('click', '.link', function(e) {
   e.preventDefault();
+
+  $('.eviction').next('.eviction-details').hide();
+
   var evictionsToHide = $(this).closest('.eviction');
-  // console.log(evictionsToHide);
+
   var id= $(this).parents().data('eviction-id');
   console.log('id',id);
 
-  evictionsToHide.each(function(){
-    $(this).siblings().not('.eviction-details').toggle();
-  });
+  // evictionsToHide.each(function(){
+  //   $(this).siblings().not('.eviction-details').toggle();
+  // });
 
   evictionsToHide.next('.eviction-details').toggle();
 
   $('html, body').animate({
-        scrollTop: $('.eviction-feed').offset().top
+        scrollTop: $(this).offset(15).top
     }, 500);
 });
 
@@ -158,7 +160,7 @@ $('#notices').on('click', '.delete-notice', function(e) {
 // update notice
 // *************
 
-$('#notices').on('click', '.edit-notice', function(e) {
+$('#evictions').on('click', '.edit-notice', function(e) {
   e.preventDefault();
   var id= $(this).data('eviction-id');
   console.log('id',id);
@@ -198,6 +200,7 @@ function handleUpdateNoticeSubmit(e) {
     data: formData,
     success: function update(notice) {
       console.log('notice after PUT', notice);
+      noticeHandlebarsTemplate();
     }
   });
 
@@ -216,26 +219,21 @@ function noticeHandlebarsTemplate() {
   var template = Handlebars.compile(source);
 
   $.get('/api/notices').success(function (notice) {
-    var noticeResult = notice;
-    var noticeHtml = template({ notice: noticeResult });
-
-    $('#notices').append(noticeHtml);
     
-    notice.forEach( function sortNoticesByEvictionId(notice) {
-      var id = notice.eviction_id;
-      $(".notice[data-eviction-id=" + id + "]").insertAfter(".eviction[data-eviction-id=" + id + "]");
-    });
+    // notice.forEach( function sortNoticesByEvictionId(notice) {
+    //   var id = notice.eviction_id;
+    //   var noticeResult = notice;
+    //   var noticeHtml = template({ notice: noticeResult });
+    //   console.log(notice);
+    //   // $(".notice[data-eviction-id=" + id + "]").insertAfter(".eviction[data-eviction-id=" + id + "]");
+    //   $(".eviction[data-eviction-id=" + id + "]").append(noticeHtml);
+    // });
 
   });
 
 }
 
 noticeHandlebarsTemplate();
-
-// function sortNoticesByEvictionId() {
-//   var id = 'M152971';
-//   $(".notice[data-eviction-id=" + id + "]").insertAfter(".eviction[data-eviction-id=" + id + "]");
-// }
 
 // #########################
 // SPA Navigation

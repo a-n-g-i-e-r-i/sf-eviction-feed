@@ -65,49 +65,69 @@
   </div>
   <!-- end tenant -->
 
-  <!-- begin eviction feed -->
+<!-- begin eviction feed -->
   <div class="eviction-feed jumbotron">
     <section class="container">
-      <div class="row">
-        <div class="col-md-10 col-md-offset-1 text-center">
-          <h1>Eviction Feed</h1>
-        </div>
-      </div>
 
-      <!-- evictions -->
-      <div class='row'>
-        <div id='evictions'>
-          <!-- eviction handlebars template -->
-          <script id="evictions-template" type="text/x-handlebars-template">
-            {{#each eviction}}
-              <div data-id="{{_id}}" class='col-md-4 eviction' data-eviction-id="{{eviction_id}}" style="background-image:url('https://maps.googleapis.com/maps/api/streetview?size=300x300&location={{lat_lng.[0]}},{{lat_lng.[1]}}&fov=90&pitch=25&key=AIzaSyANYzXCljxT5WA5OuPsOy97hQvBGq7TCqQ')">
-                <div class="link discovery-card darken-on-hover discovery-listing">
-                  <div class="panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label">
-                    <div class="va-middle text-center text-contrast">
-                      <div class="h2">
-                        <strong>{{address}}</strong>
-                      </div>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class'text-center'>Eviction Feed</h1><hr>
+        
+          
+          <div class='row eviction-content'>
+            <div class='col-sm-12'>
+              <div class='col-sm-4' id='evictions'>
+
+              <!-- evictions go inside this template-->
+              <script id="evictions-template" type="text/x-handlebars-template">
+                {{#each eviction}}
+                  <div class='text-center eviction' data-id="{{_id}}" data-eviction-id="{{eviction_id}}" style="background-image:url('https://maps.googleapis.com/maps/api/streetview?size=300x300&location={{lat_lng.[0]}},{{lat_lng.[1]}}&fov=90&pitch=25&key=AIzaSyANYzXCljxT5WA5OuPsOy97hQvBGq7TCqQ')">
+                    <strong class="link h2" >{{address}}</strong>
+                  </div><br>
+                  <div class='col-sm-12 eviction-details' data-eviction-id="{{eviction_id}}">
+                    <strong>Estoppel ID: {{eviction_id}}</strong><br>
+                    <strong>Address: {{address}}</strong><br>
+                    <strong>Supervisor District: {{supervisor_district}}</strong><br>
+                    <strong>Filed On: {{filed_on}}</strong><br>
+                    <strong>Neighborhood: {{neighborhood}}</strong><br><br>
+                    <button class='btn btn-warning add-notice' data-eviction-id="{{eviction_id}}">Add Notice</button><hr>
+                  </div>
+                {{/each}}
+              </script>
+
+              </div>
+
+              <div class='col-sm-6' id='notices'>
+              
+                <!-- notices go inside -->
+
+                <script id="notices-template" type="text/x-handlebars-template">
+                  {{#each notice}}
+                  <div class='col-sm-12 notice' data-id="{{_id}}" data-eviction-id="{{eviction_id}}">
+                    <h2>Estoppel ID: {{eviction_id}}</h2>
+                    <h3>Title: {{title}}</h3>
+                    <p>{{comment}}</p><br>
+                    <strong>Username: {{user}}</strong><br>
+                    <stron>Date: {{date}}</strong><br><br>
+                  </div>
+                  <div class='col-sm-12'>
+                    <div class='col-sm-6'>
+                      <button class='btn btn-warning edit-notice'>Edit Notice</button>
+                    </div>
+                    <div class='col-sm-6'>
+                      <button class='btn btn-warning delete-notice'>Delete Notice</button>
                     </div>
                   </div>
-                </div>
+                  <hr>
+                  {{/each}}
+                </script>
+
+                <!-- end notice feed -->
+
               </div>
-              <div class='col-md-12 eviction-details' data-eviction-id="{{eviction_id}}">
-                <div>
-                  <span>Estoppel ID: {{eviction_id}}</span>
-                  <br>
-                  <span>Address: {{address}}</span>
-                  <br>
-                  <span>Supervisor District: {{supervisor_district}}</span>
-                  <br>
-                  <span>Filed On: {{filed_on}}</span>
-                  <br>
-                  <span>Neighborhood: {{neighborhood}}</span>
-                  <br>   
-                </div>
-                <button class='btn btn-warning add-notice' data-eviction-id="{{eviction_id}}">Add Notice</button>
-              </div>
-            {{/each}}
-          </script>
+
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -122,32 +142,6 @@
           <h1>SF Eviction Map</h1>
         </div>
       </div>
-        <!-- notices -->
-        <div class='row'>
-          <div id='notices'>
-            <!-- notice handlebars template -->
-            <script id="notices-template" type="text/x-handlebars-template">
-              {{#each notice}}
-                <div class='col-md-12 notice' data-id="{{_id}}" data-eviction-id="{{eviction_id}}">
-                  <div>
-                    <span>Estoppel ID: {{eviction_id}}</span>
-                    <br>
-                    <span>Title: {{title}}</span>
-                    <br>
-                    <span>Username: {{user}}</span>
-                    <br>
-                    <span>Date: {{date}}</span>
-                    <br>
-                  </div>
-                  <button class='btn btn-warning delete-notice'>Delete Notice</button>
-                  <button class='btn btn-warning edit-notice'>Edit Notice</button>
-                </div>
-              {{/each}}
-            </script>
-          </div>
-        </div>
-        <!-- end notice feed -->
-
       <!-- map -->
       <div id='map'>
       </div>
