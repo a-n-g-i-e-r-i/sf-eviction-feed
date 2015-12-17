@@ -126,6 +126,13 @@ function handleNewNoticeSubmit(e) {
     .success(function(notice) {
     console.log('notice after POST', notice);
     //render the server's response
+
+    var source = $('#notices-template').html();
+    var template = Handlebars.compile(source);
+    var id = notice.eviction_id;
+    var noticeHtml = template(notice);
+    $('.eviction-details[data-eviction-id=' + id + ']').after(noticeHtml);
+
   });
 
   $('form')[0].reset();
