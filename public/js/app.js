@@ -144,7 +144,8 @@ $('#evictions').on('click', '.delete-notice', function(e) {
     method: 'DELETE',
     success: function destroy(notice) {
       console.log('notice after DELETE', notice);
-      $('.notice[data-id=' + id + ']').empty();
+      $('#notices').data('id',id).remove();
+      // $('.notice[data-id=' + id + ']').empty();
     }
   });
 });
@@ -193,14 +194,14 @@ function handleUpdateNoticeSubmit(e) {
     data: formData,
     success: function update(notice) {
       console.log('notice after PUT', notice);
-      $('.notice[data-id=' + id + ']').empty();
+      $('#notices').data('id',noticeId).remove();
       
-      var source = $('#notices-template').html();
-      var template = Handlebars.compile(source);
-      var noticeHtml = template(notice);
-      console.log(source);
+      // var source = $('#notices-template').html();
+      // var template = Handlebars.compile(source);
+      // var noticeHtml = template(notice);
+      // console.log(source);
 
-      $('.eviction-details[data-eviction-id=' + id + ']').after(noticeHtml);
+      // $('.eviction-details[data-eviction-id=' + id + ']').after(noticeHtml);
 
     }
   });
