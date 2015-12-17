@@ -1,10 +1,9 @@
-GA SF WDI 25 full stack web application using Mongoose, Express, jQuery/AJAX, and Node.js
-
 # EvictUs
+Full stack web application using Mongoose, Express, jQuery/AJAX, and Node.js
 
 ## Table of Contents
 
-  * [EvictUs](#what-is-EvictUs-?)
+  * [EvictUs](#what-is-evictus?)
   * [What technologies will be used?](#what-technologies-will-be-used?)
   * [Goals](#goals)
   * [How to set up the website?](#how-to-set-up-the-website?)
