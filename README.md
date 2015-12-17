@@ -18,7 +18,9 @@ Full stack web application using Mongoose, Express, jQuery/AJAX, and Node.js
 
 ## What is EvictUs?
 
-![v1 screenshot](https://raw.githubusercontent.com/inei/sourceoftruth/master/prototyping/screenshots/v1.png)
+![v1 screenshot](/home/is/dev/project-01/public/images/main-content-shot.png)
+![v2 screenshot](/home/is/dev/project-01/public/images/tenant-rights-content.png)
+![v3 screenshot](/home/is/dev/project-01/public/images/eviction-feed-content.png)
 A website that will serve as a Rosetta Stone for programmers.  Its aim is to show how to write basic programming statements in different languages so that programmers can avoid simple syntax errors.
 
 ## What technologies will be used?
