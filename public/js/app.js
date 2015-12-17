@@ -88,9 +88,9 @@ $('#evictions').on('click', '.add-notice', function(e) {
   console.log('id',id);
   $('#add-notice-modal').data('eviction-id', id);
   $('#add-notice-modal').modal();
-});
 
-$('#save-notice').on('click', handleNewNoticeSubmit);
+  $('#save-notice').on('click', handleNewNoticeSubmit);
+});
 
 function handleNewNoticeSubmit(e) {
   e.preventDefault();
@@ -156,13 +156,16 @@ $('#evictions').on('click', '.delete-notice', function(e) {
 
 $('#evictions').on('click', '.edit-notice', function(e) {
   e.preventDefault();
-  var id = $(this).data('eviction-id');
+  var evictionId = $(this).data('eviction-id');
+  var id = $(this).data('id');
   console.log('id',id);
-  $('#add-notice-modal').data('eviction-id', id);
+  $('#add-notice-modal').data('eviction-id', evictionId);
+   $('#add-notice-modal').data('id', id);
   $('#add-notice-modal').modal();
+
+  $('#save-notice').on('click', handleUpdateNoticeSubmit);
 });
 
-$('#save-notice').on('click', handleUpdateNoticeSubmit);
 
 function handleUpdateNoticeSubmit(e) {
   e.preventDefault();
