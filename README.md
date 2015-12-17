@@ -26,6 +26,7 @@ A website that will serve as a Rosetta Stone for programmers.  Its aim is to sho
 Source of Truth (working title) will be made with Ruby on Rails and AngularJS. It will use a PostgreSQL database.
 
 ## Goals
+
 **Goals that have been strikethroughed mean that goal has been reached.**
 * ~~Basic formatting of code when displayed on the webpage~~
 * ~~Data is stored in a database~~
