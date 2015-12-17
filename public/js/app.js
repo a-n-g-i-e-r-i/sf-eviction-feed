@@ -149,7 +149,6 @@ $('#evictions').on('click', '.delete-notice', function(e) {
   });
 });
 
-// **********************************************************************
 // *************
 // update notice
 // *************
@@ -194,14 +193,21 @@ function handleUpdateNoticeSubmit(e) {
     data: formData,
     success: function update(notice) {
       console.log('notice after PUT', notice);
-      noticeHandlebarsTemplate();
+      $('.notice[data-id=' + id + ']').empty();
+      
+      var source = $('#notices-template').html();
+      var template = Handlebars.compile(source);
+      var noticeHtml = template(notice);
+      console.log(source);
+
+      $('.eviction-details[data-eviction-id=' + id + ']').after(noticeHtml);
+
     }
   });
 
   $('form')[0].reset();
   $('#add-notice-modal').modal('hide');
 }
-//***********************************************************************************************
 
 // *************
 // render notices by eviction id
