@@ -27,8 +27,6 @@ $.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (evicti
       .success(function(evictionNew) {
         // console.log(evictionNew);
     });
-
-
   });
 });
 
@@ -55,10 +53,6 @@ function evictionHandlebarsTemplate() {
 }
 
 evictionHandlebarsTemplate();
-
-// *************
-// get eviction by id
-// *************
 
 // *************
 // create notice by eviction id
@@ -116,34 +110,27 @@ function handleNewNoticeSubmit(e) {
     ]
   };
 
-  // var formData = $('#form').clone()
-  //   .append('<input name="eviction_id" value="evictionId" />')
-  //   .serialize();
-
-  // console.log(formData);
-
   $.post('/api/notices', formData)
     .success(function(notice) {
     console.log('notice after POST', notice);
+    
     //render the server's response
-
     var source = $('#notices-template').html();
     var template = Handlebars.compile(source);
     var id = notice.eviction_id;
     var noticeHtml = template(notice);
     console.log(noticeHtml);
     $('.eviction-details[data-eviction-id=' + id + ']').after(noticeHtml);
-
   });
 
   $('form')[0].reset();
   $('#add-notice-modal').modal('hide');
 }
 
-
 // *************
 // delete notice
 // *************
+
 $('#evictions').on('click', '.delete-notice', function(e) {
   var id= $(this).data('id');
   console.log('id',id);
@@ -239,12 +226,9 @@ function noticeHandlebarsTemplate() {
 
     });
   });
-
 }
 
 noticeHandlebarsTemplate();
-
-
 
 // #########################
 // SPA Navigation
