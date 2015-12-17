@@ -1,10 +1,6 @@
 $(document).ready(function() {
   console.log('app is on!');
 
-// #########################
-// retrieve endpoint data
-// #########################
-
 // *************
 // consume external api
 // *************
@@ -25,7 +21,6 @@ $.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (evicti
 
     $.post('/api/evictions', evictionNew)
       .success(function(evictionNew) {
-        // console.log(evictionNew);
     });
   });
 });
@@ -34,20 +29,15 @@ $.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (evicti
 // read all evictions
 // *************
 
-// compile and render eviction handlebars template
 function evictionHandlebarsTemplate() {
   var source = $('#evictions-template').html();
   var template = Handlebars.compile(source);
 
   $.get('/api/evictions').success(function (eviction) {
-    // eviction results are in an array called `items`
-    // which is nested in the `eviction` object
-    var evictionResult = eviction;
 
-    // pass in data to render in the template
+    var evictionResult = eviction;
     var evictionHtml = template({ eviction: evictionResult });
 
-    // append html to the view
     $('#evictions').append(evictionHtml);
   });
 }
@@ -58,14 +48,11 @@ evictionHandlebarsTemplate();
 // create notice by eviction id
 // *************
 
-// modal fields update form to server
 $('#evictions').on('click', '.link', function(e) {
   e.preventDefault();
 
   var evictionsToHide = $(this).closest('.eviction');
-
   var id= $(this).parents().data('eviction-id');
-  console.log('id',id);
 
   evictionsToHide.next('.eviction-details').show();
 
@@ -74,21 +61,18 @@ $('#evictions').on('click', '.link', function(e) {
     }, 500);
 });
 
-// handles the modal fields and POSTing the form to the server
-//modal fields update form to server
 $('#evictions').on('click', '.add-notice', function(e) {
   e.preventDefault();
+
   var id= $(this).data('eviction-id');
-  console.log('id',id);
+
   $('#add-notice-modal').data('eviction-id', id);
   $('#add-notice-modal').modal();
-
   $('#save-notice').on('click', handleNewNoticeSubmit);
 });
 
 function handleNewNoticeSubmit(e) {
   e.preventDefault();
-  // var formData = $('form').serialize();
 
   var evictionId = $('#add-notice-modal').data('eviction-id');
   var title = $('#notice-title').val();
@@ -97,7 +81,6 @@ function handleNewNoticeSubmit(e) {
   var date = $('#date').val();
   var image = $('#image').val();
   var pdf = $('#pdf').val();
-
   var formData = {
     eviction_id: evictionId,
     title: title,
@@ -114,12 +97,11 @@ function handleNewNoticeSubmit(e) {
     .success(function(notice) {
     console.log('notice after POST', notice);
     
-    //render the server's response
     var source = $('#notices-template').html();
     var template = Handlebars.compile(source);
     var id = notice.eviction_id;
     var noticeHtml = template(notice);
-    console.log(noticeHtml);
+
     $('.eviction-details[data-eviction-id=' + id + ']').after(noticeHtml);
   });
 
@@ -150,13 +132,13 @@ $('#evictions').on('click', '.delete-notice', function(e) {
 
 $('#evictions').on('click', '.edit-notice', function(e) {
   e.preventDefault();
+
   var evictionId = $(this).data('eviction-id');
   var id = $(this).data('id');
-  console.log('id',id);
+
   $('#add-notice-modal').data('eviction-id', evictionId);
    $('#add-notice-modal').data('id', id);
   $('#add-notice-modal').modal();
-
   $('#save-notice').on('click', handleUpdateNoticeSubmit);
 });
 
@@ -172,7 +154,6 @@ function handleUpdateNoticeSubmit(e) {
   var date = $('#date').val();
   var image = $('#image').val();
   var pdf = $('#pdf').val();
-
   var formData = {
     eviction_id: evictionId,
     title: title,
@@ -211,7 +192,6 @@ function handleUpdateNoticeSubmit(e) {
 // render notices by eviction id
 // *************
 
-//compile notice handlebars template
 function noticeHandlebarsTemplate() {
   var source = $('#notices-template').html();
   var template = Handlebars.compile(source);
@@ -223,7 +203,6 @@ function noticeHandlebarsTemplate() {
       var noticeHtml = template(notice);
 
       $('.eviction-details[data-eviction-id=' + id + ']').after(noticeHtml);
-
     });
   });
 }

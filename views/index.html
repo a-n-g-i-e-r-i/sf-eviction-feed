@@ -67,7 +67,6 @@
           </div>
         </div>
       </div>
-      <!-- tenant's rights info -->
       <div id='tenant'>
       </div>
     </section>
@@ -104,6 +103,7 @@
                 {{/each}}
               </script>
               </div>
+              <!-- evictions go inside this template-->
               
                 <!-- notices go inside -->
                 <script id="notices-template" type="text/x-handlebars-template">
@@ -112,7 +112,7 @@
                       <div>
                         <h2>Estoppel ID: {{eviction_id}}</h2>
                         <h3>Title: {{title}}</h3>
-                        <p>{{comment}}</p><br>
+                        <p>Comment: {{comment}}</p><br>
                         <strong>Username: {{user}}</strong><br>
                         <strong>Date: {{date}}</strong><br><br>
                       </div>
@@ -127,7 +127,7 @@
                     </div>
                   </div>
                 </script>
-                <!-- end notice feed -->
+                <!-- notices go inside -->
 
               </div>
             </div>
