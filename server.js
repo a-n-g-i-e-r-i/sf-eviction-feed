@@ -65,7 +65,6 @@ app.get('/api/evictions', function evictionIndex (req, res) {
 app.get('/api/notices', function noticeIndex (req, res) {
   db.Notice.find({}, function(err, notices) {
     res.json(notices);
-    console.log(notices);
   });
 });
 
@@ -80,7 +79,8 @@ app.delete('/api/notices/:id', function deleteNotice(req, res) {
   console.log('requested notice id=', req.params.id);
   db.Notice.remove({_id: req.params.id}, function(err, notice) {
     if (err) {console.log('error, err'); }
-  res.send("Notice Deleted");
+  res.json(notice);
+  console.log('deleted');
   });
 });
 
