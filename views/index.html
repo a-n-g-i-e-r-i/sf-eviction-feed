@@ -76,15 +76,16 @@
           
           <div class='row eviction-content'>
             <div class='col-sm-12'>
-              <div class='col-sm-4' id='evictions'>
+              <div id='evictions'>
 
               <!-- evictions go inside this template-->
               <script id="evictions-template" type="text/x-handlebars-template">
                 {{#each eviction}}
-                  <div class='text-center eviction' data-id="{{_id}}" data-eviction-id="{{eviction_id}}" style="background-image:url('https://maps.googleapis.com/maps/api/streetview?size=300x300&location={{lat_lng.[0]}},{{lat_lng.[1]}}&fov=90&pitch=25&key=AIzaSyANYzXCljxT5WA5OuPsOy97hQvBGq7TCqQ')">
-                    <strong class="link h2" >{{address}}</strong>
+                <div class='evictions-and-notices row' data-eviction-id='{{eviction_id}}'>
+                  <div class='col-sm-4 text-center eviction' data-id="{{_id}}" data-eviction-id="{{eviction_id}}" style="background-image:url('https://maps.googleapis.com/maps/api/streetview?size=300x300&location={{lat_lng.[0]}},{{lat_lng.[1]}}&fov=90&pitch=25&key=AIzaSyANYzXCljxT5WA5OuPsOy97hQvBGq7TCqQ')">
+                    <h2 class="link" >{{address}}</h2>
                   </div><br>
-                  <div class='col-sm-12 eviction-details' data-eviction-id="{{eviction_id}}">
+                  <div class='col-sm-4 eviction-details' data-eviction-id="{{eviction_id}}">
                     <strong>Estoppel ID: {{eviction_id}}</strong><br>
                     <strong>Address: {{address}}</strong><br>
                     <strong>Supervisor District: {{supervisor_district}}</strong><br>
@@ -92,34 +93,35 @@
                     <strong>Neighborhood: {{neighborhood}}</strong><br><br>
                     <button class='btn btn-warning add-notice' data-eviction-id="{{eviction_id}}">Add Notice</button><hr>
                   </div>
+                </div>
                 {{/each}}
               </script>
 
               </div>
-
-              <div class='col-sm-6' id='notices'>
               
                 <!-- notices go inside -->
 
                 <script id="notices-template" type="text/x-handlebars-template">
-                  {{#each notice}}
-                  <div class='col-sm-12 notice' data-id="{{_id}}" data-eviction-id="{{eviction_id}}">
-                    <h2>Estoppel ID: {{eviction_id}}</h2>
-                    <h3>Title: {{title}}</h3>
-                    <p>{{comment}}</p><br>
-                    <strong>Username: {{user}}</strong><br>
-                    <stron>Date: {{date}}</strong><br><br>
-                  </div>
-                  <div class='col-sm-12'>
-                    <div class='col-sm-6'>
-                      <button class='btn btn-warning edit-notice'>Edit Notice</button>
+                  <div class='col-sm-6 container' id='notices'>
+                    <div class='notice col-sm-12' data-id="{{_id}}" data-eviction-id="{{eviction_id}}">
+                      <div>
+                        <h2>Estoppel ID: {{eviction_id}}</h2>
+                        <h3>Title: {{title}}</h3>
+                        <p>{{comment}}</p><br>
+                        <strong>Username: {{user}}</strong><br>
+                        <strong>Date: {{date}}</strong><br><br>
+                      </div>
+                      <div class='col-sm-12'>
+                        <div class='col-sm-6'>
+                          <button class='btn btn-warning edit-notice' data-id="{{_id}}">Edit Notice</button>
+                        </div>
+                        <div class='col-sm-6'>
+                          <button class='btn btn-warning delete-notice' data-id="{{_id}}">Delete Notice</button>
+                        </div>
+                      </div>
+                      <hr>
                     </div>
-                    <div class='col-sm-6'>
-                      <button class='btn btn-warning delete-notice'>Delete Notice</button>
-                    </div>
                   </div>
-                  <hr>
-                  {{/each}}
                 </script>
 
                 <!-- end notice feed -->

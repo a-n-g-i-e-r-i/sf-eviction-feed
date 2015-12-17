@@ -46,18 +46,18 @@ app.get('/api', function apiIndex (req, res) {
   });
 });
 
-app.get('/api/evictions', function evictionIndex (req, res) {
-  db.Eviction.find({}, function(err, evictions) {
-    res.json(evictions);
-  });
-});
-
 app.post('/api/evictions', function addEviction (req, res) {
   var body = req.body;
   db.Eviction.remove(req.body, function(err, isThere) {
   });
   db.Eviction.create(req.body, function(err, eviction) {
     res.json(eviction);
+  });
+});
+
+app.get('/api/evictions', function evictionIndex (req, res) {
+  db.Eviction.find({}, function(err, evictions) {
+    res.json(evictions);
   });
 });
 
