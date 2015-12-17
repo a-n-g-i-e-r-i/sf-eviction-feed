@@ -50,6 +50,7 @@ app.post('/api/evictions', function addEviction (req, res) {
   var body = req.body;
   db.Eviction.remove(req.body, function(err, isThere) {
   });
+
   db.Eviction.create(req.body, function(err, eviction) {
     res.json(eviction);
   });
@@ -87,7 +88,7 @@ app.put('/api/notices/:id', function updateNotice(req, res) {
   console.log(req.body);
   db.Notice.update({_id: req.params.id}, req.body, function(err, notice) {
     if (err) {console.log('error, err'); }
-    console.log("Notice Updated");
+    console.log("Notice Updated",notice);
   });
   db.Notice.findOne({_id: req.params.id}, function(err, notice) {
     res.json(notice);
