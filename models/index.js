@@ -1,5 +1,7 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/evictions");
+mongoose.connect(process.env.MONGOLAB_URI || 
+  process.env.MONGOHQ_URL || 
+  "mongodb://localhost/evictions");
 
 var Eviction = require('./eviction.js');
 var Notice = require('./notice.js');
