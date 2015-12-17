@@ -144,7 +144,7 @@ $('#evictions').on('click', '.delete-notice', function(e) {
     method: 'DELETE',
     success: function destroy(notice) {
       console.log('notice after DELETE', notice);
-      $('[data-notice-id=' + id + ']').empty();
+      $('.notice[data-id=' + id + ']').empty();
     }
   });
 });
