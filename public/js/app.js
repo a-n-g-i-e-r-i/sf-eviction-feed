@@ -136,8 +136,8 @@ function handleNewNoticeSubmit(e) {
 // *************
 // delete notice
 // *************
-$('#notices').on('click', '.delete-notice', function(e) {
-  var id= $(this).parents('[data-id]').data('id');
+$('#evictions').on('click', '.delete-notice', function(e) {
+  var id= $(this).data('id');
   console.log('id',id);
   $.ajax({
     url: '/api/notices/' + id,
@@ -156,7 +156,7 @@ $('#notices').on('click', '.delete-notice', function(e) {
 
 $('#evictions').on('click', '.edit-notice', function(e) {
   e.preventDefault();
-  var id= $(this).data('eviction-id');
+  var id = $(this).data('eviction-id');
   console.log('id',id);
   $('#add-notice-modal').data('eviction-id', id);
   $('#add-notice-modal').modal();
@@ -212,26 +212,22 @@ function noticeHandlebarsTemplate() {
   var source = $('#notices-template').html();
   var template = Handlebars.compile(source);
 
-  $.get('/api/notices').success(function (notice) {
-    var noticeResult = notice;
-    var noticeHtml = template({ notice: noticeResult });
+  $.get('/api/notices').success(function (notices) {
 
-    $('#notices').append(noticeHtml);
-    
-    // notice.forEach( function sortNoticesByEvictionId(notice) {
-    //   var id = notice.eviction_id;
-    //   var noticeResult = notice;
-    //   var noticeHtml = template({ notice: noticeResult });
-    //   console.log(notice);
-    //   // $(".notice[data-eviction-id=" + id + "]").insertAfter(".eviction[data-eviction-id=" + id + "]");
-    //   $(".eviction[data-eviction-id=" + id + "]").append(noticeHtml);
-    // });
+    notices.forEach(function sortNoticeByEvictionId(notice) {
+      var id = notice.eviction_id;
+      var noticeHtml = template(notice);
 
+      $('.eviction-details[data-eviction-id=' + id + ']').after(noticeHtml);
+
+    });
   });
 
 }
 
 noticeHandlebarsTemplate();
+
+
 
 // #########################
 // SPA Navigation
