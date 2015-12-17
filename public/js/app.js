@@ -1,6 +1,8 @@
 $(document).ready(function() {
   console.log('app is on!');
 
+  var $evictions = $("#evictions");
+
 // #########################
 // retrieve endpoint data
 // #########################
@@ -23,7 +25,7 @@ function evictionHandlebarsTemplate() {
     var evictionHtml = template({ eviction: evictionResult });
 
     // append html to the view
-    $('#evictions').append(evictionHtml);
+    $evictions.append(evictionHtml);
   });
 }
 
@@ -34,7 +36,7 @@ evictionHandlebarsTemplate();
 // *************
 
 // modal fields update form to server
-$('#evictions').on('click', '.link', function(e) {
+$evictions.on('click', '.link', function(e) {
   e.preventDefault();
 
   var evictionsToHide = $(this).closest('.eviction');
@@ -51,7 +53,7 @@ $('#evictions').on('click', '.link', function(e) {
 
 // handles the modal fields and POSTing the form to the server
 //modal fields update form to server
-$('#evictions').on('click', '.add-notice', function(e) {
+$evictions.on('click', '.add-notice', function(e) {
   e.preventDefault();
   var id= $(this).data('eviction-id');
   console.log('id',id);
@@ -88,7 +90,7 @@ function handleNewNoticeSubmit(e) {
   $.post('/api/notices', formData)
     .success(function(notice) {
     console.log('notice after POST', notice);
-    
+
     //render the server's response
     var source = $('#notices-template').html();
     var template = Handlebars.compile(source);
@@ -106,7 +108,7 @@ function handleNewNoticeSubmit(e) {
 // delete notice
 // *************
 
-$('#evictions').on('click', '.delete-notice', function(e) {
+$evictions.on('click', '.delete-notice', function(e) {
   var id= $(this).data('id');
   console.log('id',id);
   $.ajax({
@@ -123,7 +125,7 @@ $('#evictions').on('click', '.delete-notice', function(e) {
 // update notice
 // *************
 
-$('#evictions').on('click', '.edit-notice', function(e) {
+$evictions.on('click', '.edit-notice', function(e) {
   e.preventDefault();
   var evictionId = $(this).data('eviction-id');
   var id = $(this).data('id');
