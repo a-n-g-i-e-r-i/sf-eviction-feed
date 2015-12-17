@@ -207,15 +207,11 @@ function handleUpdateNoticeSubmit(e) {
     success: function update(notice) {
       console.log('notice after PUT', notice);
       $('#notices').data('id',noticeId).remove();
-      var remove = $('#notices').data('id',noticeId).remove();
-      console.log(remove);
 
       var source = $('#notices-template').html();
       var template = Handlebars.compile(source);
       var noticeHtml = template(notice);
       $('.eviction-details[data-eviction-id=' + evictionId + ']').after(noticeHtml);
-
-      console.log('id',noticeId,'ev-id',evictionId);
 
     }
   });
