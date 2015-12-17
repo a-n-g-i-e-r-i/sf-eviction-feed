@@ -2,7 +2,7 @@
 
 //require express in app
 var express = require('express');
-
+var request = require("request"); // https://github.com/request/request
 // generate new express, mongoose, body-parser apps
 var app = express();
 var mongoose = require('mongoose');
@@ -94,6 +94,39 @@ app.put('/api/notices/:id', function updateNotice(req, res) {
     res.json(notice);
   });
 });
+
+
+
+// #########################
+// seed task
+// #########################
+
+app.get("/api/tasks/fetch_and_save_evictions", function(req, res){
+  // TODO: protect this route!
+
+  // https://github.com/request/request
+  request.get('https://data.sfgov.org/resource/ugv9-ywu3.json', function(err, response, body){
+    var evictions = JSON.parse(body);
+    console.log(evictions[0])
+    evictions.map( function(eviction, i) {
+      var client_location = eviction.client_location || {};
+      var latitude = parseFloat(client_location.latitude);
+      var longitude = parseFloat(client_location.longitude);
+      eviction.eviction_id = eviction.estoppel_id
+      // eviction.address = eviction.address
+      // eviction.supervisor_district = eviction.supervisor_district
+      eviction.filed_on = eviction.file_date
+      // eviction.neighborhood = eviction.neighborhood
+      eviction.lat_lng = [latitude, longitude]
+      return eviction;
+    });
+
+    db.Eviction.create(evictions, function(err, new_evictions) {
+      res.json({ evictions_created: new_evictions.length, evictions: new_evictions });
+    });
+
+  })
+})
 
 // #########################
 // server
