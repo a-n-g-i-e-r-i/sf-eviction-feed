@@ -47,7 +47,7 @@ EvictUs was created as a full stack web application using Mongoose, Express, jQu
 * Users can search for an eviction by Estoppel ID or neighborhood
 * Validate data by handling incorrect form inputs during create/update
 * Embedded Google map with markers for each eviction
-* Users can browse eviction makers in embedded Google Map
+* Users can browse eviction markers in embedded Google Map
 
 
 ## How to set up the website?
@@ -57,8 +57,11 @@ Make sure you have [Node Package Manager](https://www.npmjs.com/) installed.
 Commands that need to be run in order to install everything:
 * `npm init`
 * `npm install --save express`
+* `npm install --save express-session`
+* `npm install --save body-parser`
 * `npm install --save mongoose`
 * `npm install --save mongodb`
+* `npm install --save nodemon`
 
 ## Heroku Link
 
