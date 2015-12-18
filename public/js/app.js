@@ -16,7 +16,7 @@ function evictionHandlebarsTemplate() {
   var source = $('#evictions-template').html();
   var template = Handlebars.compile(source);
 
-  $.get('/api/evictions').success(function (eviction) {
+  $.get('/api/evictions', {limit: 50}).success(function (eviction) {
     // eviction results are in an array called `items`
     // which is nested in the `eviction` object
     var evictionResult = eviction;

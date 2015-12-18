@@ -57,7 +57,8 @@ app.post('/api/evictions', function addEviction (req, res) {
 });
 
 app.get('/api/evictions', function evictionIndex (req, res) {
-  db.Eviction.find({}, function(err, evictions) {
+  var limit = parseInt(req.query.limit) || 10;
+  db.Eviction.find({}).limit(limit).exec(function(err, evictions) {
     res.json(evictions);
   });
 });
