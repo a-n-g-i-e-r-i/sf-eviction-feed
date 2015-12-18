@@ -1,5 +1,4 @@
 # EvictUs
-Full stack web application using Mongoose, Express, jQuery/AJAX, and Node.js
 
 ## Table of Contents
 
@@ -21,42 +20,34 @@ Full stack web application using Mongoose, Express, jQuery/AJAX, and Node.js
 ![main screenshot](https://github.com/isangieri/project-01/blob/master/public/images/main-content-shot.png)
 ![tenant-rights screenshot](https://github.com/isangieri/project-01/blob/master/public/images/tenant-rights-content.png)
 ![eviction-feed screenshot](https://github.com/isangieri/project-01/blob/master/public/images/eviction-feed-content.png)
-A website that will serve as a Rosetta Stone for programmers.  Its aim is to show how to write basic programming statements in different languages so that programmers can avoid simple syntax errors.
+A website that will serve as a resource for evictions in San Francisco.  Its aim is to synthesize tenants rights information and existing advocacy efforts into a social forum. Users are able to upload photos, correspondence, and documents. The app creates a paper trail, and connects users to rights organizations.
 
-## What technologies will be used?
+## Technologies
 
-Source of Truth (working title) will be made with Ruby on Rails and AngularJS. It will use a PostgreSQL database.
+EvictUs was created as a full stack web application using Mongoose, Express, jQuery/AJAX, and Node.js.
 
 ## Goals
 
 **Goals that have been strikethroughed mean that goal has been reached.**
 * ~~Basic formatting of code when displayed on the webpage~~
 * ~~Data is stored in a database~~
-* ~~Search bar can search through all available statements~~
-* ~~Links to more information about statements and coding conventions for languages~~
+* ~~Links to more information about tenant rights resources~~
 * ~~Single page app~~
-* Code has syntax highlighting when displayed on the webpage
-* Search bar has autocomplete
-* Examples can be filtered
-* Users can sign up and submit additional examples
-* Admin can approve user submitted examples
-* User submitted examples can be compiled and run before submission to check if they are valid or not
+* ~~Users can submit, edit and delete notices stored in a database~~
 
 ## How to set up the website?
 
 Make sure you have [Node Package Manager](https://www.npmjs.com/) installed.
 
 Commands that need to be run in order to install everything:
-* `bower install`
-* `bundle install`
-* `bundle update` (this is just in case the version of sprockets is too new and needs to be reverted back to an older version in order to work with angular-rails-templates)
-* `rake db:create`
-* `rake db:migrate`
-* `rake db:seed`
+* `npm init`
+* `npm install --save express`
+* `npm install --save mongoose`
+* `npm install --save mongodb`
 
 ## Heroku Link
 
-https://sourceoftruth.herokuapp.com/
+https://sf-evictions-feed.herokuapp.com/
 
 ## Prototyping
 
