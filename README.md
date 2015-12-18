@@ -55,7 +55,7 @@ https://sf-evictions-feed.herokuapp.com/
 
 #### Minimum Viable Product
 
-![MVP](project-01/public/images/MVP.png)
+![MVP](https://raw.githubusercontent.com/isangieri/project-01/master/public/images/MVP.png)
 
 #### Stretch: User Auth
 
