@@ -90,8 +90,6 @@ app.put('/api/notices/:id', function updateNotice(req, res) {
   db.Notice.update({_id: req.params.id}, req.body, function(err, notice) {
     if (err) {console.log('error, err'); }
     console.log("Notice Updated",notice);
-  });
-  db.Notice.findOne({_id: req.params.id}, function(err, notice) {
     res.json(notice);
   });
 });
