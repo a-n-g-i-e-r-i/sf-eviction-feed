@@ -81,7 +81,7 @@ https://sf-evictions-feed.herokuapp.com/
 
 ### Entity Relationship Diagram
 
-![ERD](https://image.png)
+![ERD](https://github.com/isangieri/project-01/blob/master/public/images/ERD.png)
 
 ### User Stories
 
