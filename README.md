@@ -29,7 +29,7 @@ EvictUs was created as a full stack web application using Mongoose, Express, jQu
 ## Goals
 
 **Goals that have been strikethroughed mean that goal has been reached.**
-* ~~Express Application that has both HTML and JSON API endpoints~~
+*~~Express Application that has both HTML and JSON API endpoints~~
 *~~RESTful CRUD routes~~
 *~~Leverage AJAX to fetch JSON data from the backend~~
 *~~Use jQuery to add interactivity and render data on the client-side~~
@@ -39,10 +39,10 @@ EvictUs was created as a full stack web application using Mongoose, Express, jQu
 *~~Use external API from https://data.sfgov.org to integrate evictions and notices~~
 *~~Use external Google Street View API to integrate images and evictions~~
 *~~Deploy code to Heroku~~
-* ~~Links to more information about tenant rights resources~~
-* ~~Single page app~~
+*~~Links to more information about tenant rights resources~~
+*~~Single page app~~
 *~~Users can browse eviction information and notices~~
-* ~~Users can submit, edit and delete notices stored in a database~~
+*~~Users can submit, edit and delete notices stored in a database~~
 *Users can signup, login, and logout
 *Users can search for an eviction by Estoppel ID or neighborhood
 *Validate data by handling incorrect form inputs during create/update
