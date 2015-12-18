@@ -57,26 +57,22 @@ https://sf-evictions-feed.herokuapp.com/
 
 ![MVP](https://raw.githubusercontent.com/inei/sourceoftruth/master/prototyping/wireframes/mvp.png)
 
-#### Stretch: Single Page Search and Results
+#### Stretch: Single Page Add Notice and Scroll Feed
 
-![Single Page Search](https://raw.githubusercontent.com/inei/sourceoftruth/master/prototyping/wireframes/1%20page%20search.png)
+![Single Page](https://raw.githubusercontent.com/inei/sourceoftruth/master/prototyping/wireframes/1%20page%20search.png)
 
-![Single Page Results](https://raw.githubusercontent.com/inei/sourceoftruth/master/prototyping/wireframes/1%20page%20results.png)
+#### Stretch: User Auth, Multiple HTML Endpoints, Map
 
-#### Stretch: Multiple Page User
+![Login and Signup](https://image.png)
 
-![Login and Signup](https://raw.githubusercontent.com/inei/sourceoftruth/master/prototyping/wireframes/login%20and%20signup%20sidebar.png)
+![Mulitple HTML Endpoints](https://image.png)
 
-![Profile](https://raw.githubusercontent.com/inei/sourceoftruth/master/prototyping/wireframes/profile.png)
-
-![Edit Profile](https://raw.githubusercontent.com/inei/sourceoftruth/master/prototyping/wireframes/edit%20profile.png)
-
-![Choose Languages](https://raw.githubusercontent.com/inei/sourceoftruth/master/prototyping/wireframes/choose%20languages.png)
+![Map](https://image.png)
 
 ### Entity Relationship Diagram
 
-![ERD](https://raw.githubusercontent.com/inei/sourceoftruth/master/prototyping/erd/erd.png)
+![ERD](https://image.png)
 
 ### User Stories
 
-A [Trello board](https://trello.com/b/ddBCrGYt) is being used to track user stories and the current progress on each one.
+A [Trello board](https://trello.com/) is being used to track user stories and the current progress on each one.
