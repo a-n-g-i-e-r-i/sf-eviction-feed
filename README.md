@@ -55,15 +55,13 @@ https://sf-evictions-feed.herokuapp.com/
 
 #### Minimum Viable Product
 
-![MVP](https://raw.githubusercontent.com/inei/sourceoftruth/master/prototyping/wireframes/mvp.png)
+![MVP](project-01/public/images/MVP.png)
 
-#### Stretch: Single Page Add Notice and Scroll Feed
-
-![Single Page](https://raw.githubusercontent.com/inei/sourceoftruth/master/prototyping/wireframes/1%20page%20search.png)
-
-#### Stretch: User Auth, Multiple HTML Endpoints, Map
+#### Stretch: User Auth
 
 ![Login and Signup](https://image.png)
+
+#### Stretch: Multiple HTML Endpoints, Map
 
 ![Mulitple HTML Endpoints](https://image.png)
 
