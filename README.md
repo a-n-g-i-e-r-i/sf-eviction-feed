@@ -35,6 +35,7 @@ EvictUs was created as a full stack web application using Mongoose, Express, jQu
 * ~~Use jQuery to add interactivity and render data on the client-side~~
 * ~~Persist at least three models to a Mongo Database~~
 * ~~Use Twitter Bootstrap CSS framework~~
+* ~~'Sticky' navigation sidebar~~
 * ~~Render JSON data on the frontend using Handlebars templates~~
 * ~~Use external API from https://data.sfgov.org to integrate evictions and notices~~
 * ~~Use external Google Street View API to integrate images and evictions~~
