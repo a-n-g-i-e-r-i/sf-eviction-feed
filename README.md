@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-  * [EvictUs](#what-is-evictus?)
-  * [What technologies will be used?](#what-technologies-will-be-used?)
+  * [EvictUs](https://github.com/isangieri/project-01#what-is-evictus)
+  * [What technologies will be used?](https://github.com/isangieri/project-01#technologies)
   * [Goals](#goals)
   * [How to set up the website?](#how-to-set-up-the-website?)
   * [Heroku Link](#Heroku Link)
