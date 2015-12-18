@@ -53,6 +53,18 @@ https://sf-evictions-feed.herokuapp.com/
 
 ### Wireframes
 
+![Wireframe 01](https://raw.githubusercontent.com/isangieri/project-01/master/public/images/IMG_20151210_165526.jpg)
+
+![Wireframe 02](https://github.com/isangieri/project-01/blob/master/public/images/IMG_20151215_220235.jpg)
+
+### Front End Flow Diagram
+
+![Front End Flow](https://github.com/isangieri/project-01/blob/master/public/images/IMG_20151210_173251.jpg)
+
+### Database Flow Diagram
+
+![Database Flow](https://github.com/isangieri/project-01/blob/master/public/images/IMG_20151212_185737.jpg)
+
 #### Minimum Viable Product
 
 ![MVP](https://raw.githubusercontent.com/isangieri/project-01/master/public/images/MVP.png)
