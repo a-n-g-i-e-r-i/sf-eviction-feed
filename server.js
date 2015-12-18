@@ -79,16 +79,22 @@ app.post('/api/notices', function addNotice(req, res) {
 app.delete('/api/notices/:id', function deleteNotice(req, res) {
   console.log('requested notice id=', req.params.id);
   db.Notice.remove({_id: req.params.id}, function(err, notice) {
-    if (err) {console.log('error, err'); }
-  res.json(notice);
-  console.log('deleted');
+    if (err) {
+      console.log(err.message);
+      return res.status(404).json({errors: [err.message]})
+    }
+    res.json(notice);
+    console.log('deleted');
   });
 });
 
 app.put('/api/notices/:id', function updateNotice(req, res) {
   console.log(req.body);
   db.Notice.update({_id: req.params.id}, req.body, function(err, notice) {
-    if (err) {console.log('error, err'); }
+    if (err) {
+      console.log(err.message);
+      return res.status(404).json({errors: [err.message]})
+    }
     console.log("Notice Updated",notice);
     res.json(notice);
   });
