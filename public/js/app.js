@@ -2,30 +2,6 @@ $(document).ready(function() {
   console.log('app is on!');
 
 // *************
-// consume external api
-// *************
-
-$.get('https://data.sfgov.org/resource/ugv9-ywu3.json').success(function (eviction) {
-  eviction.forEach( function(eviction) {
-
-    var latitude = parseFloat(eviction.client_location.latitude);
-    var longitude = parseFloat(eviction.client_location.longitude);
-    var evictionNew = {
-      eviction_id: eviction.estoppel_id,
-      address: eviction.address,
-      supervisor_district: eviction.supervisor_district,
-      filed_on: eviction.file_date,
-      neighborhood: eviction.neighborhood,
-      lat_lng: [latitude, longitude]
-    };
-
-    $.post('/api/evictions', evictionNew)
-      .success(function(evictionNew) {
-    });
-  });
-});
-
-// *************
 // read all evictions
 // *************
 
