@@ -10,10 +10,12 @@
   <!-- stylesheets -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 
   <!-- vendor scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
   <!-- application scripts -->
   <script src="js/app.js"></script>
@@ -110,11 +112,12 @@
                   <div class='col-sm-6 container' id='notices' data-id="{{_id}}">
                     <div class='notice col-sm-12' data-id="{{_id}}" data-eviction-id="{{eviction_id}}">
                       <div>
-                        <h2>Estoppel ID: {{eviction_id}}</h2>
-                        <h3>Title: {{title}}</h3>
-                        <p>Comment: {{comment}}</p><br>
-                        <strong>Username: {{user}}</strong><br>
-                        <strong>Date: {{date}}</strong><br><br>
+                        <h2><strong>Estoppel ID</strong> {{eviction_id}}</h2>
+                        <p>{{notice_date}}</p><br>
+                        <h3><strong>Title</strong> {{title}}</h3>
+                        <p><strong>Comment</strong> {{comment}}</p><br>
+                        <p><strong>Username</strong> {{user}}</p><br>
+                        <p><strong>Event Date</strong> {{date}}</p><br><br>
                       </div>
                       <div class='col-sm-12'>
                         <div class='col-sm-6'>
@@ -169,8 +172,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="notice-title">Notice Title</label>
               <div class="col-md-4">
-              <input id="notice-title" name="notice-title" type="text" placeholder="" class="form-control input-md" required>
-
+                <input id="notice-title" name="notice-title" type="text" placeholder="" class="form-control input-md" required>
               </div>
             </div>
 
@@ -178,8 +180,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="username">Username</label>
               <div class="col-md-4">
-              <input id="username" name="username" type="text" placeholder="" class="form-control input-md" required>
-
+                <input id="username" name="username" type="text" placeholder="" class="form-control input-md" required>
               </div>
             </div>
 
@@ -187,15 +188,15 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="comment">Comment</label>
               <div class="col-md-4">
-              <textarea id="comment" name="comment" type="text" placeholder="" class="form-control input-md" cols="50" rows="10" required></textarea>
+                <textarea id="comment" name="comment" type="text" placeholder="" class="form-control input-md" cols="50" rows="10" required></textarea>
               </div>
             </div>
 
             <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="date">Date</label>
+            <div class="form-group date">
+              <label class="col-md-4 control-label" for="date">Event Date</label>
               <div class="col-md-4">
-              <input id="date" name="date" type="text" placeholder="" class="form-control input-md" required>
+                <input id="datepick" name="date" type="text" placeholder="" class="form-control input-md" required>
               </div>
             </div>
 
@@ -203,7 +204,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="image">Image</label>
               <div class="col-md-4">
-              <input id="image" name="image" type="text" placeholder="" class="form-control input-md" required>
+                <input id="image" name="image" type="text" placeholder="" class="form-control input-md" required>
               </div>
             </div>
 
@@ -211,7 +212,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="pdf">PDF</label>
               <div class="col-md-4">
-              <input id="pdf" name="pdf" type="text" placeholder="" class="form-control input-md">
+                <input id="pdf" name="pdf" type="text" placeholder="" class="form-control input-md">
               </div>
             </div>
 

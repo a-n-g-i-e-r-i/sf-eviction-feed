@@ -11,6 +11,7 @@ var noticeSchema = new Schema({
   title: String,
   user: String,
   comment: String,
+  notice_date: String,
   date: String,
   resource: [Resource.schema],
 });

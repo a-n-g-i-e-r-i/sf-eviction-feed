@@ -71,6 +71,15 @@ $('#evictions').on('click', '.add-notice', function(e) {
   $('#save-notice').on('click', handleNewNoticeSubmit);
 });
 
+$(document).ready(function() {
+    $("#datepick").datepicker();
+});
+
+function getDate() {
+  var result = new Date();
+  return result.toString("yyyy-MM-dd hh:mm:ss tt");
+}
+
 function handleNewNoticeSubmit(e) {
   e.preventDefault();
 
@@ -78,11 +87,12 @@ function handleNewNoticeSubmit(e) {
   var title = $('#notice-title').val();
   var username = $('#username').val();
   var comment = $('#comment').val();
-  var date = $('#date').val();
+  var date = $('#datepick').val();
   var image = $('#image').val();
   var pdf = $('#pdf').val();
   var formData = {
     eviction_id: evictionId,
+    notice_date: getDate(),
     title: title,
     user: username,
     comment: comment,
@@ -151,11 +161,12 @@ function handleUpdateNoticeSubmit(e) {
   var title = $('#notice-title').val();
   var username = $('#username').val();
   var comment = $('#comment').val();
-  var date = $('#date').val();
+  var date = $('#datepick').val();
   var image = $('#image').val();
   var pdf = $('#pdf').val();
   var formData = {
     eviction_id: evictionId,
+    notice_date: getDate(),
     title: title,
     user: username,
     comment: comment,

@@ -22,6 +22,7 @@
     "body-parser": "~1.14.1",
     "mongodb": "~2.1.0",
     "nodemon": "~1.8.1",
-    "express-session": "~1.12.1"
+    "express-session": "~1.12.1",
+    "request": "~2.67.0"
   }
 }
