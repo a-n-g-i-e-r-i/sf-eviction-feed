@@ -1,3 +1,4 @@
+
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
@@ -21,45 +22,6 @@ var db = require('./models/index');
 // html endpoints
 // *************
 
-request('https://data.sfgov.org/resource/ugv9-ywu3.json', function (error, response, body) {
-  if (!error && response.statusCode == 200) {
-    body = JSON.parse(body);
-    body.forEach( function(eviction) {
-
-    var latitude;
-    var longitude;
-
-    function initCoords() {
-      if (eviction.client_location) {
-        latitude = parseFloat(eviction.client_location.latitude);
-        longitude = parseFloat(eviction.client_location.longitude);
-      } else {
-        showError("No Way!");
-      }
-    }
-
-    var evictionNew = {
-      eviction_id: eviction.estoppel_id,
-      address: eviction.address,
-      supervisor_district: eviction.supervisor_district,
-      filed_on: eviction.file_date,
-      neighborhood: eviction.neighborhood,
-      lat_lng: [latitude, longitude]
-    };
-
-    app.post('/api/evictions', function addEviction (req, res) {
-      db.Eviction.remove(evictionNew, function(err, isThere) {
-      });
-
-      db.Eviction.create(evictionNew, function(err, eviction) {
-        res.json(eviction);
-      });
-    });
-
-    });
-  }
-});
-
 app.get('/', function homepage (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
@@ -78,6 +40,79 @@ app.get('/api', function apiIndex (req, res) {
     ]
   });
 });
+
+app.post('/api/evictions', function addEviction (req, res) {
+
+  var body = req.body;
+  db.Eviction.remove(body, function(err, isThere) {
+  });
+
+  db.Eviction.create(body, function(err, eviction) {
+    res.json(eviction);
+  });
+  // //pass a callback after the previous function completes
+  // //res is the return value of the previous function
+  // .then(function(res) {
+  //   //confirms that request.post().form(arg) arg is passed to post request defintion
+  //   console.log(res, 'promise res');
+  // });
+});
+
+function initCoords(eviction) {
+  var latitude;
+  var longitude;
+
+  if (eviction.client_location) {
+    latitude = parseFloat(eviction.client_location.latitude);
+    longitude = parseFloat(eviction.client_location.longitude);
+  } else {
+   console.log("No Way!");
+  }
+
+  return [latitude, longitude];
+}
+
+function getAndPostEvictions() {
+
+  var data = [];
+
+  request.get('https://data.sfgov.org/resource/ugv9-ywu3.json', 
+    function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        body = JSON.parse(body);
+        body.forEach(function(eviction) {
+
+          var lat_lng = initCoords(eviction);
+
+          var img_url = 'https://maps.googleapis.com/maps/api/streetview?size=300x300&location=' +
+          lat_lng[0] + ',' +
+          lat_lng[1] +
+          '&fov=75&pitch=25&key=AIzaSyANYzXCljxT5WA5OuPsOy97hQvBGq7TCqQ';
+
+          var evictionNew = {
+            eviction_id: eviction.estoppel_id,
+            address: eviction.address,
+            supervisor_district: eviction.supervisor_district,
+            filed_on: eviction.file_date,
+            neighborhood: eviction.neighborhood,
+            lat_lng: lat_lng,
+            img_url: img_url
+          };
+          
+          data.push(evictionNew);
+
+        });
+
+        data.forEach(function(eviction ){
+          request.post('http://localhost:3000/api/evictions').form(eviction);
+        });
+
+      }
+
+    });
+}
+
+getAndPostEvictions();
 
 app.get('/api/evictions', function evictionIndex (req, res) {
   db.Eviction.find({}, function(err, evictions) {
