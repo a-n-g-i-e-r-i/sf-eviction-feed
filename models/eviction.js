@@ -12,7 +12,6 @@ var evictionSchema = new Schema ({
   filed_on: String,
   neighborhood: String,
   lat_lng: []
-  // notice: [Notice.schema],
 });
 
 //defines Eviction by evictionSchema
