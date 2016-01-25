@@ -1,10 +1,6 @@
 var mongoose = require("mongoose");
   Schema = mongoose.Schema;
 
-//requires Resource from resource.js
-var Resource = require('./resource.js');
-var Eviction = require('./eviction.js');
-
 //defines noticeSchema
 var noticeSchema = new Schema({
   eviction_id: String,
@@ -13,7 +9,6 @@ var noticeSchema = new Schema({
   comment: String,
   notice_date: String,
   date: String,
-  resource: [Resource.schema],
 });
 
 //defines Notice by noticeSchema
