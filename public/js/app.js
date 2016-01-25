@@ -64,19 +64,13 @@ function handleNewNoticeSubmit(e) {
   var username = $('#username').val();
   var comment = $('#comment').val();
   var date = $('#datepick').val();
-  var image = $('#image').val();
-  var pdf = $('#pdf').val();
   var formData = {
     eviction_id: evictionId,
     notice_date: getDate(),
     title: title,
     user: username,
     comment: comment,
-    date: date,
-    resource: [
-      {image: image},
-      {pdf: pdf}
-    ]
+    date: date
   };
 
   $.post('/api/notices', formData)
@@ -123,7 +117,7 @@ $('#evictions').on('click', '.edit-notice', function(e) {
   var id = $(this).data('id');
 
   $('#add-notice-modal').data('eviction-id', evictionId);
-   $('#add-notice-modal').data('id', id);
+  $('#add-notice-modal').data('id', id);
   $('#add-notice-modal').modal();
   $('#save-notice').on('click', handleUpdateNoticeSubmit);
 });
@@ -138,29 +132,21 @@ function handleUpdateNoticeSubmit(e) {
   var username = $('#username').val();
   var comment = $('#comment').val();
   var date = $('#datepick').val();
-  var image = $('#image').val();
-  var pdf = $('#pdf').val();
   var formData = {
+    _id: noticeId,
     eviction_id: evictionId,
     notice_date: getDate(),
     title: title,
     user: username,
     comment: comment,
-    date: date,
-    resource: [
-      {image: image},
-      {pdf: pdf}
-    ]
+    date: date
   };
-
-  console.log(formData);
 
   $.ajax({
     url: '/api/notices/' + noticeId,
     method: 'PUT',
     data: formData,
     success: function update(notice) {
-      console.log('notice after PUT', notice);
       $('#notices').data('id',noticeId).remove();
 
       var source = $('#notices-template').html();

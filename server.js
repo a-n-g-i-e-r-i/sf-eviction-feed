@@ -50,12 +50,7 @@ app.post('/api/evictions', function addEviction (req, res) {
   db.Eviction.create(body, function(err, eviction) {
     res.json(eviction);
   });
-  // //pass a callback after the previous function completes
-  // //res is the return value of the previous function
-  // .then(function(res) {
-  //   //confirms that request.post().form(arg) arg is passed to post request defintion
-  //   console.log(res, 'promise res');
-  // });
+
 });
 
 function initCoords(eviction) {
@@ -87,7 +82,8 @@ function getAndPostEvictions() {
           var img_url = 'https://maps.googleapis.com/maps/api/streetview?size=300x300&location=' +
           lat_lng[0] + ',' +
           lat_lng[1] +
-          '&fov=75&pitch=25&key=AIzaSyANYzXCljxT5WA5OuPsOy97hQvBGq7TCqQ';
+          '&fov=75&pitch=25&' +
+          'key=AIzaSyCXfvjeDHi1k6_CQPXoxM5pY1_n1mEMjfo';
 
           var evictionNew = {
             eviction_id: eviction.estoppel_id,
@@ -103,8 +99,9 @@ function getAndPostEvictions() {
 
         });
 
-        data.forEach(function(eviction ){
+        data.forEach(function (eviction) {
           request.post('http://localhost:3000/api/evictions').form(eviction);
+          console.log(eviction, 'post');
         });
 
       }
@@ -115,9 +112,19 @@ function getAndPostEvictions() {
 getAndPostEvictions();
 
 app.get('/api/evictions', function evictionIndex (req, res) {
+
   db.Eviction.find({}, function(err, evictions) {
-    res.json(evictions);
+
+    data = [];
+
+    for(i = 0; i <= 10; i ++) {
+      data.push(evictions[i]);
+    }
+
+    res.json(data);
+
   });
+
 });
 
 app.get('/api/notices', function noticeIndex (req, res) {
@@ -130,27 +137,30 @@ app.post('/api/notices', function addNotice(req, res) {
   var body = req.body;
   db.Notice.create(body, function(err, notice) {
     res.json(notice);
+    console.log(notice, 'post notice');
   });
 });
 
 app.delete('/api/notices/:id', function deleteNotice(req, res) {
   console.log('requested notice id=', req.params.id);
   db.Notice.remove({_id: req.params.id}, function(err, notice) {
-    if (err) {console.log('error, err'); }
-  res.json(notice);
-  console.log('deleted');
+    if (err) {console.log('error', err); }
+    res.json(notice);
+    console.log('deleted');
   });
 });
 
 app.put('/api/notices/:id', function updateNotice(req, res) {
-  console.log(req.body);
-  db.Notice.update({_id: req.params.id}, req.body, function(err, notice) {
-    if (err) {console.log('error, err'); }
+
+  var id = req.params.id;
+  delete req.body._id;
+
+  db.Notice.findOneAndUpdate({_id: id}, req.body, function (err, notice) {
+    if (err) {console.log('error', err); }
     console.log("Notice Updated",notice);
-  });
-  db.Notice.findOne({_id: req.params.id}, function(err, notice) {
     res.json(notice);
-  });
+});
+
 });
 
 // #########################
