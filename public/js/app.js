@@ -59,22 +59,8 @@ function getDate() {
 function handleNewNoticeSubmit(e) {
   e.preventDefault();
 
-
-  console.log( $('form').serialize() );
-
   var evictionId = $('#add-notice-modal').data('eviction-id');
-  var title = $('#notice-title').val();
-  var username = $('#username').val();
-  var comment = $('#comment').val();
-  var date = $('#datepick').val();
-  var formData = {
-    eviction_id: evictionId,
-    notice_date: getDate(),
-    title: title,
-    user: username,
-    comment: comment,
-    date: date
-  };
+  var formData = $('form').serialize() + "&eviction_id=" + evictionId + "";
 
   $.post('/api/notices', formData)
     .success(function(notice) {
