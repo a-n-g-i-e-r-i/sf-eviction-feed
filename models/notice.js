@@ -3,12 +3,12 @@ var mongoose = require("mongoose");
 
 //defines noticeSchema
 var noticeSchema = new Schema({
-  eviction_id: String,
-  title: String,
-  user: String,
-  comment: String,
-  notice_date: String,
-  date: String,
+  eviction_id: { type: String, default: ""},
+  title: { type: String, default: ""},
+  user: { type: String, default: ""},
+  comment: { type: String, default: ""},
+  notice_date: { type: String, default: ""},
+  date: { type: String, default: ""}
 });
 
 //defines Notice by noticeSchema
