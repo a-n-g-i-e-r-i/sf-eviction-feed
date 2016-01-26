@@ -196,7 +196,7 @@
             <div class="form-group date">
               <label class="col-md-4 control-label" for="date">Event Date</label>
               <div class="col-md-4">
-                <input id="datepick" name="date" type="text" placeholder="" class="form-control input-md" required>
+                <input name="date" type="text" placeholder="" class="datepick form-control input-md" required>
               </div>
             </div>
 
@@ -211,7 +211,48 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
+    <!-- begin update-notice-modal: this is not visible until you call .modal() on it -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="update-notice-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Update Notice</h4>
+        </div>
+        <div class="modal-body">
+          <h2><strong>Estoppel ID</strong> blank</h2>
+          <p>notice date</p><br>
+          <h3><strong>Title</strong> title</h3>
+          <h3><strong>Username</strong> username</h3>
+          <fieldset class='form-horizontal'>
+          <form>
 
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="comment">Comment</label>
+              <div class="col-md-4">
+                <textarea id="comment" name="comment" type="text" placeholder="" class="form-control input-md" cols="50" rows="10" required></textarea>
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group date">
+              <label class="col-md-4 control-label" for="date">Event Date</label>
+              <div class="col-md-4">
+                <input name="date" type="text" placeholder="" class="datepick form-control input-md" required>
+              </div>
+            </div>
+
+          </form>
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" id="update-notice">Update changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->  
   
 </body>
 
