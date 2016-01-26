@@ -59,6 +59,9 @@ function getDate() {
 function handleNewNoticeSubmit(e) {
   e.preventDefault();
 
+
+  console.log( $('form').serialize() );
+
   var evictionId = $('#add-notice-modal').data('eviction-id');
   var title = $('#notice-title').val();
   var username = $('#username').val();
