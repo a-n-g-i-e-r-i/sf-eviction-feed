@@ -48,7 +48,7 @@ $('#evictions').on('click', '.add-notice', function(e) {
 });
 
 $(document).ready(function() {
-    $("#datepick").datepicker();
+    $(".datepick").datepicker();
 });
 
 function getDate() {
@@ -79,23 +79,6 @@ function handleNewNoticeSubmit(e) {
 }
 
 // *************
-// delete notice
-// *************
-
-$('#evictions').on('click', '.delete-notice', function(e) {
-  var id= $(this).data('id');
-  console.log('id',id);
-  $.ajax({
-    url: '/api/notices/' + id,
-    method: 'DELETE',
-    success: function destroy(notice) {
-      console.log('notice after DELETE', notice);
-      $('#notices').data('id',id).remove();
-    }
-  });
-});
-
-// *************
 // update notice
 // *************
 
@@ -105,28 +88,21 @@ $('#evictions').on('click', '.edit-notice', function(e) {
   var evictionId = $(this).data('eviction-id');
   var id = $(this).data('id');
 
-  $('#add-notice-modal').data('eviction-id', evictionId);
-  $('#add-notice-modal').data('id', id);
-  $('#add-notice-modal').modal();
-  $('#save-notice').on('click', handleUpdateNoticeSubmit);
+  $('#update-notice-modal').data('eviction-id', evictionId);
+  $('#update-notice-modal').data('id', id);
+  $('#update-notice-modal').modal();
+  $('#update-notice').on('click', handleUpdateNoticeSubmit);
 });
 
 
 function handleUpdateNoticeSubmit(e) {
   e.preventDefault();
 
-  var noticeId = $('#add-notice-modal').data('id');
-  var evictionId = $('#add-notice-modal').data('eviction-id');
-  var title = $('#notice-title').val();
-  var username = $('#username').val();
+  var noticeId = $('#update-notice-modal').data('id');
   var comment = $('#comment').val();
   var date = $('#datepick').val();
   var formData = {
     _id: noticeId,
-    eviction_id: evictionId,
-    notice_date: getDate(),
-    title: title,
-    user: username,
     comment: comment,
     date: date
   };
@@ -147,8 +123,25 @@ function handleUpdateNoticeSubmit(e) {
   });
 
   $('form')[0].reset();
-  $('#add-notice-modal').modal('hide');
+  $('#update-notice-modal').modal('hide');
 }
+
+// *************
+// delete notice
+// *************
+
+$('#evictions').on('click', '.delete-notice', function(e) {
+  var id= $(this).data('id');
+  console.log('id',id);
+  $.ajax({
+    url: '/api/notices/' + id,
+    method: 'DELETE',
+    success: function destroy(notice) {
+      console.log('notice after DELETE', notice);
+      $('#notices').data('id',id).remove();
+    }
+  });
+});
 
 // *************
 // render notices by eviction id
