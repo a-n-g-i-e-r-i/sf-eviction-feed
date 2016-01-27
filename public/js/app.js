@@ -59,6 +59,7 @@ $('#evictions').on('click', '.add-notice', function (e) {
 
 function handleNewNoticeSubmit(e) {
   $('#save-notice').on('click', function (e) {
+    $( this ).off(e);
     var evictionId = $('#add-notice-modal').data('eviction-id');
     var formData = $('form.add').serialize() + "&notice_date=" + getDate() + "&eviction_id=" + evictionId + "";
 
@@ -97,6 +98,7 @@ $('#evictions').on('click', '.edit-notice', function(e) {
 
 function handleUpdateNoticeSubmit(e) {
   $('#update-notice').on('click', function(e) {
+    $( this ).off(e);
     var noticeId = $('#update-notice-modal').data('id');
     var formData = $('form.update').serialize() + "&_id=" + noticeId + "";
 
