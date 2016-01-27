@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var request = require('request');
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // #########################
@@ -42,7 +43,6 @@ app.get('/api', function apiIndex (req, res) {
 });
 
 app.post('/api/evictions', function addEviction (req, res) {
-
   var body = req.body;
   db.Eviction.remove(body, function(err, isThere) {
   });
@@ -112,19 +112,13 @@ function getAndPostEvictions() {
 getAndPostEvictions();
 
 app.get('/api/evictions', function evictionIndex (req, res) {
-
   db.Eviction.find({}, function(err, evictions) {
-
     data = [];
-
     for(i = 0; i <= 10; i ++) {
       data.push(evictions[i]);
     }
-
     res.json(data);
-
   });
-
 });
 
 app.get('/api/notices', function noticeIndex (req, res) {
@@ -134,8 +128,7 @@ app.get('/api/notices', function noticeIndex (req, res) {
 });
 
 app.post('/api/notices', function addNotice(req, res) {
-  var body = req.body;
-  db.Notice.create(body, function(err, notice) {
+  db.Notice.create(req.body, function(err, notice) {
     res.json(notice);
     console.log(notice, 'post notice');
   });
@@ -151,15 +144,21 @@ app.delete('/api/notices/:id', function deleteNotice(req, res) {
 });
 
 app.put('/api/notices/:id', function updateNotice(req, res) {
-
-  var id = req.params.id;
-  delete req.body._id;
-
-  db.Notice.findOneAndUpdate({_id: id}, req.body, function (err, notice) {
+  db.Notice.update({_id: req.params.id},
+    {
+      $set: {
+        comment: req.body.comment,
+        date: req.body.date
+      }
+    }, 
+   function (err, notice) {
     if (err) {console.log('error', err); }
     console.log("Notice Updated",notice);
+  });
+
+  db.Notice.findOne({_id: req.params.id}, function(err, notice) {
     res.json(notice);
-});
+  });
 
 });
 
