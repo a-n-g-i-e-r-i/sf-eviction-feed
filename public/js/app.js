@@ -2,6 +2,8 @@
 $(document).ready(function() {
   console.log('app is on!');
 
+var $evictions = $('#evictions');
+
 // *************
 // read all evictions
 // *************
@@ -15,7 +17,7 @@ function evictionHandlebarsTemplate() {
     var evictionResult = eviction;
     var evictionHtml = template({ eviction: evictionResult });
 
-    $('#evictions').append(evictionHtml);
+    $evictions.append(evictionHtml);
   });
 }
 
@@ -34,7 +36,7 @@ function getDate() {
   return result.toString("yyyy-MM-dd hh:mm:ss tt");
 }
 
-$('#evictions').on('click', '.link', function (e) {
+$evictions.on('click', '.link', function (e) {
   e.preventDefault();
 
   var evictionsToHide = $(this).closest('.eviction');
@@ -47,11 +49,11 @@ $('#evictions').on('click', '.link', function (e) {
     }, 500);
 });
 
-$('#evictions').on('click', '.add-notice', function (e) {
+$evictions.on('click', '.add-notice', function (e) {
   e.preventDefault();
   handleNewNoticeSubmit();
 
-  var id= $(this).data('eviction-id');
+  var id = $(this).data('eviction-id');
 
   $('#add-notice-modal').data('eviction-id', id);
   $('#add-notice-modal').modal();
@@ -83,7 +85,7 @@ function handleNewNoticeSubmit(e) {
 // update notice
 // *************
 
-$('#evictions').on('click', '.edit-notice', function(e) {
+$evictions.on('click', '.edit-notice', function(e) {
   e.preventDefault();
   handleUpdateNoticeSubmit();
 
@@ -95,10 +97,10 @@ $('#evictions').on('click', '.edit-notice', function(e) {
   $('#update-notice-modal').modal();
 });
 
-
 function handleUpdateNoticeSubmit(e) {
   $('#update-notice').on('click', function(e) {
     $( this ).off(e);
+
     var noticeId = $('#update-notice-modal').data('id');
     var formData = $('form.update').serialize() + "&_id=" + noticeId + "";
 
@@ -113,7 +115,6 @@ function handleUpdateNoticeSubmit(e) {
         var template = Handlebars.compile(source);
         var noticeHtml = template(notice);
         $('.eviction-details[data-eviction-id=' + notice.eviction_id + ']').after(noticeHtml);
-
       }
     });
 
@@ -126,7 +127,7 @@ function handleUpdateNoticeSubmit(e) {
 // delete notice
 // *************
 
-$('#evictions').on('click', '.delete-notice', function(e) {
+$evictions.on('click', '.delete-notice', function(e) {
   var id= $(this).data('id');
   console.log('id',id);
   $.ajax({
