@@ -44,9 +44,17 @@ app.get('/api', function apiIndex (req, res) {
 app.post('/api/evictions', function addEviction (req, res) {
   var body = req.body;
   db.Eviction.remove(body, function(err, isThere) {
+    if (err) {
+      console.log(err.message);
+      return res.status(404).json({errors: [err.message]});
+    }
   });
 
   db.Eviction.create(body, function(err, eviction) {
+    if (err) {
+      console.log(err.message);
+      return res.status(404).json({errors: [err.message]});
+    }
     res.json(eviction);
   });
 
@@ -68,8 +76,12 @@ function getAndPostEvictions() {
   var data = [];
 
   request.get('https://data.sfgov.org/resource/ugv9-ywu3.json', 
-  function (error, response, body) {
-    if (!error && response.statusCode == 200) {
+  function (err, response, body) {
+    if (err) {
+      console.log(err.message);
+      return res.status(404).json({errors: [err.message]});
+    }
+    if (!err && response.statusCode == 200) {
       body = JSON.parse(body);
       body.forEach(function(eviction) {
 
@@ -97,7 +109,6 @@ function getAndPostEvictions() {
 
       data.forEach(function (eviction) {
         request.post('http://localhost:3000/api/evictions').form(eviction);
-        console.log(eviction, 'post');
       });
     }
   });
@@ -107,6 +118,10 @@ getAndPostEvictions();
 
 app.get('/api/evictions', function evictionIndex (req, res) {
   db.Eviction.find({}, function(err, evictions) {
+    if (err) {
+      console.log(err.message);
+      return res.status(404).json({errors: [err.message]});
+    }
     var limit = parseInt(req.query.limit) || 10;
     db.Eviction.find({}).limit(limit).exec(function(err, evictions) {
     res.json(evictions);
@@ -116,12 +131,20 @@ app.get('/api/evictions', function evictionIndex (req, res) {
 
 app.get('/api/notices', function noticeIndex (req, res) {
   db.Notice.find({}, function(err, notices) {
+    if (err) {
+      console.log(err.message);
+      return res.status(404).json({errors: [err.message]});
+    }
     res.json(notices);
   });
 });
 
 app.post('/api/notices', function addNotice(req, res) {
   db.Notice.create(req.body, function(err, notice) {
+    if (err) {
+      console.log(err.message);
+      return res.status(404).json({errors: [err.message]});
+    }
     res.json(notice);
     console.log(notice, 'post notice');
   });
@@ -130,7 +153,10 @@ app.post('/api/notices', function addNotice(req, res) {
 app.delete('/api/notices/:id', function deleteNotice(req, res) {
   console.log('requested notice id=', req.params.id);
   db.Notice.remove({_id: req.params.id}, function(err, notice) {
-    if (err) {console.log('error', err); }
+    if (err) {
+      console.log(err.message);
+      return res.status(404).json({errors: [err.message]});
+    }
     res.json(notice);
     console.log('deleted');
   });
@@ -145,7 +171,10 @@ app.put('/api/notices/:id', function updateNotice(req, res) {
       }
     }, 
    function (err, notice) {
-    if (err) {console.log('error', err); }
+    if (err) {
+      console.log(err.message);
+      return res.status(404).json({errors: [err.message]});
+    }
     console.log("Notice Updated",notice);
   });
 
