@@ -12,7 +12,7 @@ function evictionHandlebarsTemplate() {
   var source = $('#evictions-template').html();
   var template = Handlebars.compile(source);
 
-  $.get('/api/evictions').success(function (eviction) {
+  $.get('/api/evictions', {limit: 20}).success(function (eviction) {
 
     var evictionResult = eviction;
     var evictionHtml = template({ eviction: evictionResult });

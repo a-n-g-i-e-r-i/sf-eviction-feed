@@ -1,4 +1,3 @@
-
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
@@ -60,10 +59,7 @@ function initCoords(eviction) {
   if (eviction.client_location) {
     latitude = parseFloat(eviction.client_location.latitude);
     longitude = parseFloat(eviction.client_location.longitude);
-  } else {
-   console.log("No Way!");
   }
-
   return [latitude, longitude];
 }
 
@@ -72,52 +68,49 @@ function getAndPostEvictions() {
   var data = [];
 
   request.get('https://data.sfgov.org/resource/ugv9-ywu3.json', 
-    function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        body = JSON.parse(body);
-        body.forEach(function(eviction) {
+  function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      body = JSON.parse(body);
+      body.forEach(function(eviction) {
 
-          var lat_lng = initCoords(eviction);
+        var lat_lng = initCoords(eviction);
 
-          var img_url = 'https://maps.googleapis.com/maps/api/streetview?size=300x300&location=' +
-          lat_lng[0] + ',' +
-          lat_lng[1] +
-          '&fov=75&pitch=25&' +
-          'key=AIzaSyCXfvjeDHi1k6_CQPXoxM5pY1_n1mEMjfo';
+        var img_url = 'https://maps.googleapis.com/maps/api/streetview?size=300x300&location=' +
+        lat_lng[0] + ',' +
+        lat_lng[1] +
+        '&fov=75&pitch=25&' +
+        'key=AIzaSyBlO4qle8MH0WC4I1cRWRQMcQM7Unmkhns';
 
-          var evictionNew = {
-            eviction_id: eviction.estoppel_id,
-            address: eviction.address,
-            supervisor_district: eviction.supervisor_district,
-            filed_on: eviction.file_date,
-            neighborhood: eviction.neighborhood,
-            lat_lng: lat_lng,
-            img_url: img_url
-          };
-          
-          data.push(evictionNew);
+        var evictionNew = {
+          eviction_id: eviction.estoppel_id,
+          address: eviction.address,
+          supervisor_district: eviction.supervisor_district,
+          filed_on: eviction.file_date,
+          neighborhood: eviction.neighborhood,
+          lat_lng: lat_lng,
+          img_url: img_url
+        };
+        
+        data.push(evictionNew);
 
-        });
+      });
 
-        data.forEach(function (eviction) {
-          request.post('http://localhost:3000/api/evictions').form(eviction);
-          console.log(eviction, 'post');
-        });
-
-      }
-
-    });
+      data.forEach(function (eviction) {
+        request.post('http://localhost:3000/api/evictions').form(eviction);
+        console.log(eviction, 'post');
+      });
+    }
+  });
 }
 
 getAndPostEvictions();
 
 app.get('/api/evictions', function evictionIndex (req, res) {
   db.Eviction.find({}, function(err, evictions) {
-    data = [];
-    for(i = 0; i <= 10; i ++) {
-      data.push(evictions[i]);
-    }
-    res.json(data);
+    var limit = parseInt(req.query.limit) || 10;
+    db.Eviction.find({}).limit(limit).exec(function(err, evictions) {
+    res.json(evictions);
+    });
   });
 });
 
