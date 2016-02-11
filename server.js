@@ -75,7 +75,7 @@ function getAndPostEvictions() {
 
   var data = [];
 
-  request.get('https://data.sfgov.org/resource/ugv9-ywu3.json', 
+  request.get('https://data.sfgov.org/resource/ugv9-ywu3.json',
   function (err, response, body) {
     if (err) {
       console.log(err.message);
@@ -102,7 +102,7 @@ function getAndPostEvictions() {
           lat_lng: lat_lng,
           img_url: img_url
         };
-        
+
         data.push(evictionNew);
 
       });
@@ -169,7 +169,7 @@ app.put('/api/notices/:id', function updateNotice(req, res) {
         comment: req.body.comment,
         date: req.body.date
       }
-    }, 
+    },
    function (err, notice) {
     if (err) {
       console.log(err.message);
@@ -189,5 +189,4 @@ app.put('/api/notices/:id', function updateNotice(req, res) {
 // #########################
 
 app.listen(process.env.PORT || 3000, function () {
-  console.log('Express server is running on http://localhost:3000/');
 });
