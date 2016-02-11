@@ -107,14 +107,18 @@ function getAndPostEvictions() {
 
       });
 
-      data.forEach(function (eviction) {
-        request.post('http://localhost:3000/api/evictions').form(eviction);
-      });
+      db.Eviction.save(data,function(){
+        err && console.log(err)
+      })
+
+      // data.forEach(function (eviction) {
+      //   request.post('/api/evictions').form(eviction);
+      // });
     }
   });
 }
 
-getAndPostEvictions();
+// getAndPostEvictions();
 
 app.get('/api/evictions', function evictionIndex (req, res) {
   db.Eviction.find({}, function(err, evictions) {
