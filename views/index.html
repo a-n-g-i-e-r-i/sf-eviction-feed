@@ -23,6 +23,30 @@
 </head>
 
 <body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="/">Home</a>
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	          <span class="sr-only">Toggle navigation</span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	      </button>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div id="navbar" class="navbar-collapse collapse">
+	      <ul class="nav navbar-nav navbar-right">
+				  	<li><button class='btn btn-warning nav-tenants-rights'>Tenant Rights</button></li>
+				    <li><button class='btn btn-warning nav-eviction-feed'>Evictions</button></li>
+				    <li><button class='btn btn-warning nav-view-map'>SF Map</button></li>
+			  </ul>
+	    </div><!-- /.navbar-collapse -->
+
+	  </div><!-- /.container-fluid -->
+	</nav>
 
   <!-- begin navigation -->
   <div class="main-content large-box" img>
@@ -32,27 +56,13 @@
           <h1>EvictUs</h1><hr>
           <h2>Latin <strong><em>evictus | </em></strong>to overcome and expel, conquer, subdue, vanquish; prevail over; supplant</i></h2>
         </div>
-        <div class="col-md-3 text-center sidebar">
-          <div>
-            <h2>Tenant's Rights</h2>
-            <button class='btn btn-warning nav-tenants-rights'>Learn More</button>
-          </div>
-          <div>
-            <h2>Evictions</h2>
-            <button class='btn btn-warning nav-eviction-feed'>Browse Feed</button>
-          </div>
-          <div>
-            <h2>Map of SF Evictions</h2>
-            <button class='btn btn-warning nav-view-map'>View Map</button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
   <!--   end navigation -->
 
   <!-- begin tenant -->
-  <div class="tenants-rights large-box"> 
+  <div class="tenants-rights large-box">
     <section class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-1 text-center">
@@ -80,7 +90,7 @@
     <section class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-1 text-center">
-          <h1 class'text-center'>Eviction Feed</h1>  
+          <h1 class'text-center'>Eviction Feed</h1>
           <div class='row eviction-content'>
             <div class='col-sm-12'>
               <div id='evictions'>
@@ -106,7 +116,7 @@
               </script>
               </div>
               <!-- evictions go inside this template-->
-              
+
                 <!-- notices go inside -->
                 <script id="notices-template" type="text/x-handlebars-template">
                   <div class='col-sm-6 container' id='notices' data-id="{{_id}}">
@@ -252,12 +262,11 @@
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->  
-  
+  </div><!-- /.modal -->
+
 </body>
 
   <!-- handlebars -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
 
 </html>
-
